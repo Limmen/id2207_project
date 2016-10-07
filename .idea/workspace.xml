@@ -2,24 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b4aea9ad-372b-4d31-9e91-f18fd4a20fec" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/README.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/kth/id2007/project/model/Roles.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/kth/id2007/project/view/MainFrame.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/java/kth/id2007/project/acceptance_tests/LoginAcceptanceTest.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/java/kth/id2007/project/model/RolesTest.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/java/kth/id2007/project/view/MainFrameTest.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/java/kth/id2007/project/view/StartFrameTest.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.classpath" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.project" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/kth/id2007/project/view/ClientRecordFrame.java" afterPath="$PROJECT_DIR$/src/main/java/kth/id2007/project/view/ClientRecordPanel.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sep_system.iml" afterPath="$PROJECT_DIR$/sep_system.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/kth/id2007/project/model/User.java" afterPath="$PROJECT_DIR$/src/main/java/kth/id2007/project/model/User.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/kth/id2007/project/view/GUI.java" afterPath="$PROJECT_DIR$/src/main/java/kth/id2007/project/view/GUI.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/kth/id2007/project/view/StartFrame.java" afterPath="$PROJECT_DIR$/src/main/java/kth/id2007/project/view/StartFrame.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/kth/id2007/project/model/UserTest.java" afterPath="$PROJECT_DIR$/src/test/java/kth/id2007/project/model/UserTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/kth/id2007/project/view/MainFrame.java" afterPath="$PROJECT_DIR$/src/main/java/kth/id2007/project/view/MainFrame.java" />
     </list>
     <ignored path="sep_system.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -50,12 +36,56 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="LoginAcceptanceTest.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MainFrame.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/kth/id2007/project/view/MainFrame.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="180">
+              <caret line="176" column="0" selection-start-line="176" selection-start-column="0" selection-end-line="176" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LoginAcceptanceTest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/kth/id2007/project/acceptance_tests/LoginAcceptanceTest.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="382">
               <caret line="60" column="28" selection-start-line="60" selection-start-column="28" selection-end-line="60" selection-end-column="28" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GUI.java.orig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/kth/id2007/project/view/GUI.java.orig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="408">
+              <caret line="104" column="9" selection-start-line="82" selection-start-column="4" selection-end-line="104" selection-end-column="9" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GUI.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/kth/id2007/project/view/GUI.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="194">
+              <caret line="89" column="13" selection-start-line="89" selection-start-column="13" selection-end-line="89" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ClientRecordPanel.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/kth/id2007/project/view/ClientRecordPanel.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="417">
+              <caret line="39" column="5" selection-start-line="16" selection-start-column="4" selection-end-line="39" selection-end-column="5" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -91,13 +121,15 @@
         <option value="$PROJECT_DIR$/src/test/java/kth/id2007/project/LoginAcceptanceTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/kth/id2007/project/view/LoginAcceptanceTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/kth/id2007/project/view/StartFrame.java" />
-        <option value="$PROJECT_DIR$/src/main/java/kth/id2007/project/view/GUI.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/README.txt" />
         <option value="$PROJECT_DIR$/src/test/java/kth/id2007/project/view/StartFrameTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/kth/id2007/project/view/MainFrame.java" />
         <option value="$PROJECT_DIR$/src/test/java/kth/id2007/project/acceptance_tests/LoginAcceptanceTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/kth/id2007/project/view/MainFrameTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/kth/id2007/project/view/GUI.java" />
+        <option value="$PROJECT_DIR$/src/main/java/kth/id2007/project/view/ClientRecordFrame.java" />
+        <option value="$PROJECT_DIR$/src/main/java/kth/id2007/project/view/ClientRecordPanel.java" />
+        <option value="$PROJECT_DIR$/src/main/java/kth/id2007/project/view/MainFrame.java" />
       </list>
     </option>
   </component>
@@ -122,7 +154,7 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="-2" />
     <option name="y" value="2" />
-    <option name="width" value="803" />
+    <option name="width" value="1604" />
     <option name="height" value="899" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
@@ -981,7 +1013,7 @@
       <workItem from="1475758225341" duration="3369000" />
       <workItem from="1475782414929" duration="2050000" />
       <workItem from="1475784533495" duration="77000" />
-      <workItem from="1475824656941" duration="3549000" />
+      <workItem from="1475824656941" duration="4261000" />
     </task>
     <servers />
   </component>
@@ -1018,10 +1050,10 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="27823000" />
+    <option name="totallyTimeSpent" value="28535000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-2" y="2" width="803" height="899" extended-state="0" />
+    <frame x="-2" y="2" width="1604" height="899" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1036,7 +1068,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18494898" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4649934" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27599487" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32991013" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24967907" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1171,7 +1203,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1245,7 +1277,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1263,7 +1295,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1292,16 +1324,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/kth/id2007/project/view/Font.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/kth/id2007/project/view/GUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="34" column="4" selection-start-line="34" selection-start-column="4" selection-end-line="34" selection-end-column="4" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="555">
@@ -1352,16 +1374,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/kth/id2007/project/view/MainFrame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="337">
-          <caret line="88" column="31" selection-start-line="88" selection-start-column="31" selection-end-line="88" selection-end-column="31" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/kth/id2007/project/view/StartFrame.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
@@ -1393,6 +1405,42 @@
         <state relative-caret-position="382">
           <caret line="60" column="28" selection-start-line="60" selection-start-column="28" selection-end-line="60" selection-end-column="28" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/kth/id2007/project/view/GUI.java.orig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="104" column="9" selection-start-line="82" selection-start-column="4" selection-end-line="104" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/kth/id2007/project/view/ClientRecordPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="417">
+          <caret line="39" column="5" selection-start-line="16" selection-start-column="4" selection-end-line="39" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/kth/id2007/project/view/GUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="194">
+          <caret line="89" column="13" selection-start-line="89" selection-start-column="13" selection-end-line="89" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/kth/id2007/project/view/MainFrame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="176" column="0" selection-start-line="176" selection-start-column="0" selection-end-line="176" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

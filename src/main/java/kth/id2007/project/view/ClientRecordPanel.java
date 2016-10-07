@@ -1,15 +1,10 @@
 package kth.id2007.project.view;
 
-import java.awt.Component;
-
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-
 import net.miginfocom.swing.MigLayout;
 
-public class ClientRecordFrame extends JFrame {
+import javax.swing.*;
+
+public class ClientRecordPanel extends JPanel {
 
 	private GUI gui;
 	private JTextField clientNameField;
@@ -19,10 +14,8 @@ public class ClientRecordFrame extends JFrame {
 	private JTextField clientPhoneNumberField;
 	
 
-	public ClientRecordFrame(GUI gui){
-		super("Client Record");
+	public ClientRecordPanel(GUI gui){
 		this.gui = gui;
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		layout=new MigLayout("wrap 2");
 		setLayout(layout);
@@ -44,9 +37,5 @@ public class ClientRecordFrame extends JFrame {
 		add(clientPhoneNumberField,"span 1");
 		
 		add(saveButton,"span 1");
-		pack();
-		setLocationRelativeTo(null); //center
-		setVisible(true);
-
 	}
 }

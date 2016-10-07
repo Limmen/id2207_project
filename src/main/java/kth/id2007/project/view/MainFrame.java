@@ -184,9 +184,26 @@ public class MainFrame extends JFrame {
                 Roles.MARKETING_OFFICER, Roles.MARKETING_ASSISTANT, Roles.ADMINISTRATOR
         };
 
-        private ClientsPanel() {
-            setLayout(new MigLayout("wrap 1"));
-            add(new JLabel("Clients"), "span 1, center");
+        private ClientsPanel(){
+            setLayout(new MigLayout("wrap 2"));
+
+            JTextField clientNameField=new JTextField(25);
+            JTextField clientEmailField=new JTextField(25);
+            JTextField clientPhoneNumberField=new JTextField(25);
+
+            JButton saveButton=new JButton("Save Record");
+            saveButton.addActionListener(gui.new ClientRecordListener(clientNameField,clientEmailField,clientPhoneNumberField));
+
+            add(new JLabel("Client Name"),"span 1");
+            add(clientNameField,"span 1");
+
+            add(new JLabel("Email"),"span 1");
+            add(clientEmailField,"span 1");
+
+            add(new JLabel("Phone Number"),"span 1");
+            add(clientPhoneNumberField,"span 1");
+
+            add(saveButton,"span 1");
         }
 
         private boolean access() {
