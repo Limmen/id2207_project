@@ -264,7 +264,7 @@ public class MainFrame extends JFrame {
                     rowData[i][0] = clientRecord.getClientName();
                     rowData[i][1] = clientRecord.getClientEmail();
                     rowData[i][2] = clientRecord.getClientPhoneNumber();
-                    rowData[i][2] = format.format(clientRecord.getCreationDate());
+                    rowData[i][3] = format.format(clientRecord.getCreationDate());
                 }
                 return rowData;
             }

@@ -22,6 +22,7 @@ public class GUI {
      */
     public GUI() {
         new StartFrame(this);
+        new StartFrame(this);
     }
 
     /**
