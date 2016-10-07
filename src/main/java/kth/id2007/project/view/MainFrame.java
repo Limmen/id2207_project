@@ -163,6 +163,36 @@ public class MainFrame extends JFrame {
             public CreateEventApplicationPanel() {
                 setLayout(new MigLayout("wrap 2"));
                 add(new JLabel("Create Event Application"), "span 2, center");
+                JTextField budgetField = new JTextField(25);
+                JTextField discountField = new JTextField(25);
+                JTextField eventTypeField = new JTextField(25);
+                JTextField preferencesField = new JTextField(25);
+                JTextField descriptionField = new JTextField(25);
+                JTextField toField = new JTextField(25);
+                JTextField fromField = new JTextField(25);
+                JTextField expectedAttendeesField = new JTextField(25);
+                JButton createEventApplicationButton = new JButton("Create");
+                createEventApplicationButton.addActionListener();
+
+                add(new JLabel("Budget:"), "span 1");
+                add(budgetField, "span 1");
+                add(new JLabel("Discount:"), "span 1");
+                add(discountField, "span 1");
+                add(new JLabel("Event Type:"), "span 1");
+                add(eventTypeField, "span 1");
+                add(new JLabel("Preferences:"), "span 1");
+                add(preferencesField, "span 1");
+                add(new JLabel("Description:"), "span 1");
+                add(descriptionField, "span 1");
+                add(new JLabel("From:"), "span 1");
+                add(fromField, "span 1");
+                add(new JLabel("To:"), "span 1");
+                add(toField, "span 1");
+                add(new JLabel("Expected Attendees:"), "span 1");
+                add(expectedAttendeesField, "span 1");
+
+
+
             }
 
             private boolean access() {

@@ -1,6 +1,7 @@
 package kth.id2007.project.view;
 
 import kth.id2007.project.model.ClientRecord;
+import kth.id2007.project.model.EventApplication;
 import kth.id2007.project.model.User;
 
 import javax.swing.*;
@@ -16,6 +17,7 @@ public class GUI {
     private GUI gui = this;
     private ArrayList<User> users = new ArrayList();
     private ArrayList<ClientRecord> clients = new ArrayList();
+    private ArrayList<EventApplication> applications = new ArrayList();
 
     /**
      * Class constructor
@@ -93,6 +95,45 @@ public class GUI {
         }
     }
 
+    // Action listener for login-button on the startframe.
+    class EventApplicationListener implements ActionListener {
+        private JTextField budgetField;
+        private JTextField discountField;
+        private JTextField eventTypeField;
+        private JTextField preferencesField;
+        private JTextField descriptionField;
+        private JTextField toField;
+        private JTextField fromField;
+        private JTextField expectedAttendeesField;
+
+        EventApplicationListener(JTextField budgetField, JTextField discountField, JTextField eventTypeField,
+                                 JTextField preferencesField, JTextField descriptionField, JTextField toField,
+                                 JTextField fromField, JTextField expectedAttendeesField) {
+            this.budgetField = budgetField;
+            this.discountField = discountField;
+            this.eventTypeField = eventTypeField;
+            this.preferencesField = preferencesField;
+            this.descriptionField = descriptionField;
+            this.toField = toField;
+            this.fromField = fromField;
+            this.expectedAttendeesField = expectedAttendeesField;
+        }
+
+
+        /**
+         * Invoked when an action occurs.
+         *
+         * @param e
+         */
+        public void actionPerformed(ActionEvent e) {
+            if (true) {
+
+
+            } else invalidInput();
+
+        }
+    }
+
     //invalidInput dialog
     private void invalidInput() {
         SwingUtilities.invokeLater(() ->
@@ -101,10 +142,15 @@ public class GUI {
         );
     }
 
-    public ArrayList<User> getUsers(){
+    public ArrayList<User> getUsers() {
         return users;
     }
-    public ArrayList<ClientRecord> getClients(){
+
+    public ArrayList<ClientRecord> getClients() {
         return clients;
+    }
+
+    public ArrayList<EventApplication> getApplications() {
+        return applications;
     }
 }   
