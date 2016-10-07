@@ -1,5 +1,6 @@
 package kth.id2007.project.view;
 
+import kth.id2007.project.model.ClientRecord;
 import kth.id2007.project.model.Roles;
 import kth.id2007.project.model.User;
 import net.miginfocom.swing.MigLayout;
@@ -7,6 +8,7 @@ import net.miginfocom.swing.MigLayout;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -91,7 +93,7 @@ public class MainFrame extends JFrame {
             CreateBudgetIssueRequestPanel createBudgetIssueRequestPanel = new CreateBudgetIssueRequestPanel();
             if (createHrRequestPanel.access())
                 add(createHrRequestPanel, "span 2, center, gaptop 30");
-            if(createBudgetIssueRequestPanel.access())
+            if (createBudgetIssueRequestPanel.access())
                 add(createBudgetIssueRequestPanel, "span 2, center");
         }
 
@@ -184,7 +186,7 @@ public class MainFrame extends JFrame {
                 Roles.MARKETING_OFFICER, Roles.MARKETING_ASSISTANT, Roles.ADMINISTRATOR
         };
 
-        private ClientsPanel(){
+        private ClientsPanel() {
             setLayout(new MigLayout("wrap 1"));
             CreateClientPanel createClientPanel = new CreateClientPanel();
             ViewClientsPanel viewClientsPanel = new ViewClientsPanel();
@@ -192,6 +194,7 @@ public class MainFrame extends JFrame {
                 add(createClientPanel, "span 1");
             add(viewClientsPanel);
         }
+
         private boolean access() {
             return Arrays.stream(accessList).anyMatch(accessRole -> accessRole.equals(user.getRole()) | accessRole.equals(user.getTeam()));
         }
@@ -200,36 +203,70 @@ public class MainFrame extends JFrame {
             private String[] accessList = new String[]{
                     Roles.SENIOR_CUSTOMER_SERVICE_OFFICER, Roles.ADMINISTRATOR
             };
-            private CreateClientPanel(){
+
+            private CreateClientPanel() {
                 setLayout(new MigLayout("wrap 2"));
+                add(new JLabel("Create New Client"), "span 2, center");
+                JTextField clientNameField = new JTextField(25);
+                JTextField clientEmailField = new JTextField(25);
+                JTextField clientPhoneNumberField = new JTextField(25);
 
-                JTextField clientNameField=new JTextField(25);
-                JTextField clientEmailField=new JTextField(25);
-                JTextField clientPhoneNumberField=new JTextField(25);
+                JButton saveButton = new JButton("Save Record");
+                saveButton.addActionListener(gui.new ClientRecordListener(clientNameField, clientEmailField, clientPhoneNumberField));
 
-                JButton saveButton=new JButton("Save Record");
-                saveButton.addActionListener(gui.new ClientRecordListener(clientNameField,clientEmailField,clientPhoneNumberField));
+                add(new JLabel("Client Name"), "span 1");
+                add(clientNameField, "span 1");
 
-                add(new JLabel("Client Name"),"span 1");
-                add(clientNameField,"span 1");
+                add(new JLabel("Email"), "span 1");
+                add(clientEmailField, "span 1");
 
-                add(new JLabel("Email"),"span 1");
-                add(clientEmailField,"span 1");
+                add(new JLabel("Phone Number"), "span 1");
+                add(clientPhoneNumberField, "span 1");
 
-                add(new JLabel("Phone Number"),"span 1");
-                add(clientPhoneNumberField,"span 1");
-
-                add(saveButton,"span 1");
+                add(saveButton, "span 1");
             }
 
             private boolean access() {
                 return Arrays.stream(accessList).anyMatch(accessRole -> accessRole.equals(user.getRole()) | accessRole.equals(user.getTeam()));
             }
         }
+
         private class ViewClientsPanel extends JPanel {
+            private SimpleDateFormat format = new SimpleDateFormat("yyyy/mm/dd/hh/mm");
+
             public ViewClientsPanel() {
-                setLayout(new MigLayout("wrap 2"));
-                add(new JLabel("Clients"), "span 2, center");
+                setLayout(new MigLayout("wrap 1"));
+                add(new JLabel("Clients"), "span 1, center");
+                String[] columnNames = new String[]{"name", "email", "phonenumber", "created"};
+                String rowData[][] = createTableModel();
+                DefaultTableModel model = new DefaultTableModel(rowData, columnNames) {
+                    @Override
+                    public boolean isCellEditable(int row, int column) {
+                        return false;
+                    }
+                };
+                JTable table = new JTable(model);
+                table.setPreferredScrollableViewportSize(table.getPreferredSize());
+                table.setFillsViewportHeight(true);
+                JScrollPane scrollPane = new JScrollPane(table, JScrollPane.VERTICAL_SCROLLBAR_NEVER,
+                        JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+                Dimension dim = new Dimension(800, 400);
+                int rowsDisplayed = 15;
+                scrollPane.setPreferredSize(new Dimension(dim.width, table.getRowHeight() * rowsDisplayed));
+                add(scrollPane, "span 1");
+            }
+
+            private String[][] createTableModel() {
+                ArrayList<ClientRecord> clients = gui.getClients();
+                String[][] rowData = new String[clients.size()][4];
+                for (int i = 0; i < clients.size(); i++) {
+                    ClientRecord clientRecord = clients.get(i);
+                    rowData[i][0] = clientRecord.getClientName();
+                    rowData[i][1] = clientRecord.getClientEmail();
+                    rowData[i][2] = clientRecord.getClientPhoneNumber();
+                    rowData[i][2] = format.format(clientRecord.getCreationDate());
+                }
+                return rowData;
             }
         }
     }

@@ -54,7 +54,7 @@ public class StartFrame extends JFrame
 		lbl.setName("team_label");
 		add(lbl,"span 1");
 		add(teamsList, "span 1");
-		add(loginButton,"span 2");
+		add(loginButton,"span 2, gaptop 20");
 
 		pack();
 		setLocationRelativeTo(null); //center on screen

@@ -1,5 +1,6 @@
 package kth.id2007.project.view;
 
+import kth.id2007.project.model.ClientRecord;
 import kth.id2007.project.model.User;
 
 import javax.swing.*;
@@ -14,6 +15,7 @@ public class GUI {
 
     private GUI gui = this;
     private ArrayList<User> users = new ArrayList();
+    private ArrayList<ClientRecord> clients = new ArrayList();
 
     /**
      * Class constructor
@@ -81,12 +83,11 @@ public class GUI {
             if ((clientNameField.getText().length() > 0) &&
                     (clientEmailField.getText().length() > 0) &&
                     (clientPhoneNumberField.getText().length() > 0)) {
-                //Ok
-                System.out.println("Client Name " + clientNameField.getText() + " Email " + clientEmailField.getText() + " Phone " + clientPhoneNumberField.getText());
-
+                ClientRecord clientRecord = new ClientRecord(clientNameField.getText(), clientEmailField.getText(),
+                        clientPhoneNumberField.getText(), null);
+                clients.add(clientRecord);
             } else {
-
-                JOptionPane.showMessageDialog(null, "All fields need to be filled out.", "Error", JOptionPane.INFORMATION_MESSAGE);
+                invalidInput();
             }
         }
     }
@@ -102,5 +103,7 @@ public class GUI {
     public ArrayList<User> getUsers(){
         return users;
     }
-
+    public ArrayList<ClientRecord> getClients(){
+        return clients;
+    }
 }   
