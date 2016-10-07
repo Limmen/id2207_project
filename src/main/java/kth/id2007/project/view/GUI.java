@@ -8,6 +8,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * GUI Controller, all calls from the view to the model goes through here.
@@ -66,11 +67,13 @@ public class GUI {
                 users.add(user);
                 new MainFrame(gui, user);
                 startFrame.setVisible(false);
-            } else invalidInput();
+            } else invalidInput("");
 
         }
     }
 
+
+    
     class ClientRecordListener implements ActionListener {
         private JTextField clientNameField;
         private JTextField clientEmailField;
@@ -90,7 +93,7 @@ public class GUI {
                         clientPhoneNumberField.getText(), null);
                 clients.add(clientRecord);
             } else {
-                invalidInput();
+                invalidInput("");
             }
         }
     }
@@ -119,25 +122,44 @@ public class GUI {
             this.expectedAttendeesField = expectedAttendeesField;
         }
 
-
+        private String errorStr="";
+        
+        private String getField(JTextField f,String desc) throws IllegalArgumentException{
+        	if(f.getText().length()>0)
+        		return f.getText();
+        	else{
+        		errorStr+=desc+"\n";
+        		throw new IllegalArgumentException();
+        	}            
+        }
+        
         /**
          * Invoked when an action occurs.
          *
          * @param e
          */
         public void actionPerformed(ActionEvent e) {
-            if (true) {
 
+            	try {
+					
+				applications.add(new EventApplication(Long.parseLong(getField(budgetField, "budget")), Integer.parseInt(getField(discountField, "disscount")), getField(eventTypeField, "event type"),
+            			getField(preferencesField, "preferences"), getField(descriptionField, "description"),
+            			new Date(),new Date(),
+            			Integer.parseInt(getField(expectedAttendeesField, "expected atendees"))));
+				
+            	
+            	} catch (Exception e2) {
+            		invalidInput(errorStr);
+				}
 
-            } else invalidInput();
-
+        
         }
     }
 
     //invalidInput dialog
-    private void invalidInput() {
+    private void invalidInput(String errorStr) {
         SwingUtilities.invokeLater(() ->
-                JOptionPane.showMessageDialog(null, "That is not valid input",
+                JOptionPane.showMessageDialog(null, "These fields are empty! "+errorStr,
                         "Invalid input", JOptionPane.INFORMATION_MESSAGE)
         );
     }
