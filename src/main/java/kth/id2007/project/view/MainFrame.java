@@ -1,6 +1,7 @@
 package kth.id2007.project.view;
 
 import kth.id2007.project.model.ClientRecord;
+import kth.id2007.project.model.EventApplication;
 import kth.id2007.project.model.Roles;
 import kth.id2007.project.model.User;
 import net.miginfocom.swing.MigLayout;
@@ -172,8 +173,8 @@ public class MainFrame extends JFrame {
                 JTextField fromField = new JTextField(25);
                 JTextField expectedAttendeesField = new JTextField(25);
                 JButton createEventApplicationButton = new JButton("Create");
-                createEventApplicationButton.addActionListener();
-
+                createEventApplicationButton.addActionListener(gui. new EventApplicationListener(budgetField, discountField,
+                        eventTypeField, preferencesField, descriptionField, toField, fromField, expectedAttendeesField));
                 add(new JLabel("Budget:"), "span 1");
                 add(budgetField, "span 1");
                 add(new JLabel("Discount:"), "span 1");
@@ -201,9 +202,46 @@ public class MainFrame extends JFrame {
         }
 
         private class ViewEventApplicationPanel extends JPanel {
+            private SimpleDateFormat format = new SimpleDateFormat("yyyy/mm/dd/hh/mm");
             public ViewEventApplicationPanel() {
                 setLayout(new MigLayout("wrap 2"));
                 add(new JLabel("Event Applications"), "span 2, center");
+                String[] columnNames = new String[]{"projectRef", "budget","discount", "eventType", "preferences",
+                        "description", "from", "to", "expected attendees"};
+                String rowData[][] = createTableModel();
+                DefaultTableModel model = new DefaultTableModel(rowData, columnNames) {
+                    @Override
+                    public boolean isCellEditable(int row, int column) {
+                        return false;
+                    }
+                };
+                JTable table = new JTable(model);
+                table.setPreferredScrollableViewportSize(table.getPreferredSize());
+                table.setFillsViewportHeight(true);
+                JScrollPane scrollPane = new JScrollPane(table, JScrollPane.VERTICAL_SCROLLBAR_NEVER,
+                        JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+                Dimension dim = new Dimension(800, 400);
+                int rowsDisplayed = 15;
+                scrollPane.setPreferredSize(new Dimension(dim.width, table.getRowHeight() * rowsDisplayed));
+                add(scrollPane, "span 1");
+            }
+
+            private String[][] createTableModel() {
+                ArrayList<EventApplication> applications = gui.getApplications();
+                String[][] rowData = new String[applications.size()][4];
+                for (int i = 0; i < applications.size(); i++) {
+                    EventApplication application = applications.get(i);
+                    rowData[i][0] = Long.toString(application.getProjectRefrenceId());
+                    rowData[i][1] = Long.toString(application.getBudget());
+                    rowData[i][2] = Long.toString(application.getDiscount());
+                    rowData[i][3] = application.getEventType();
+                    rowData[i][4] = application.getPreferences();
+                    rowData[i][5] = application.getDescription();
+                    rowData[i][6] = format.format(application.getFrom());
+                    rowData[i][7] = format.format(application.getTo());
+                    rowData[i][8] = Integer.toString(application.getExpectedAttendees());
+                }
+                return rowData;
             }
         }
 

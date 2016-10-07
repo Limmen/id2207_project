@@ -8,7 +8,7 @@ public class EventApplication {
 	private static long staticRefrenceCounter=0;
 	private long projectRefrenceId;
 	private long budget;
-	private int discount;
+	private int discount = 0;
 	private String eventType;
 	private String preferences;
 	private String description;
