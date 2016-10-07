@@ -172,7 +172,7 @@ public class MainFrame extends JFrame {
                 JTextField fromField = new JTextField(25);
                 JTextField expectedAttendeesField = new JTextField(25);
                 JButton createEventApplicationButton = new JButton("Create");
-                createEventApplicationButton.addActionListener();
+                //createEventApplicationButton.addActionListener();
 
                 add(new JLabel("Budget:"), "span 1");
                 add(budgetField, "span 1");

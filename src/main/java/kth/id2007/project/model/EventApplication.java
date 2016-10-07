@@ -16,6 +16,16 @@ public class EventApplication {
 	private int expectedAttendees;
 	private ArrayList subteamTasks=new ArrayList<SubTeamTask>();
 	
+	/**
+	 * @param budget
+	 * @param discount
+	 * @param eventType
+	 * @param preferences
+	 * @param description
+	 * @param from
+	 * @param to
+	 * @param expectedAttendees
+	 */
 	public EventApplication(long budget, int discount, String eventType, String preferences, String description, Date from,
 			Date to, int expectedAttendees) {
 		super();
