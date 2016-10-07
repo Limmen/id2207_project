@@ -233,7 +233,7 @@ public class MainFrame extends JFrame {
             }
         }
     }
-
+    
     //Employees-panel/tab
     private class EmployeesPanel extends JPanel {
         private String[] accessList = new String[]{
