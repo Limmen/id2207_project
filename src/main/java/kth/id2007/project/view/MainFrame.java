@@ -185,29 +185,52 @@ public class MainFrame extends JFrame {
         };
 
         private ClientsPanel(){
-            setLayout(new MigLayout("wrap 2"));
-
-            JTextField clientNameField=new JTextField(25);
-            JTextField clientEmailField=new JTextField(25);
-            JTextField clientPhoneNumberField=new JTextField(25);
-
-            JButton saveButton=new JButton("Save Record");
-            saveButton.addActionListener(gui.new ClientRecordListener(clientNameField,clientEmailField,clientPhoneNumberField));
-
-            add(new JLabel("Client Name"),"span 1");
-            add(clientNameField,"span 1");
-
-            add(new JLabel("Email"),"span 1");
-            add(clientEmailField,"span 1");
-
-            add(new JLabel("Phone Number"),"span 1");
-            add(clientPhoneNumberField,"span 1");
-
-            add(saveButton,"span 1");
+            setLayout(new MigLayout("wrap 1"));
+            CreateClientPanel createClientPanel = new CreateClientPanel();
+            ViewClientsPanel viewClientsPanel = new ViewClientsPanel();
+            if (createClientPanel.access())
+                add(createClientPanel, "span 1");
+            add(viewClientsPanel);
         }
-
         private boolean access() {
             return Arrays.stream(accessList).anyMatch(accessRole -> accessRole.equals(user.getRole()) | accessRole.equals(user.getTeam()));
+        }
+
+        private class CreateClientPanel extends JPanel {
+            private String[] accessList = new String[]{
+                    Roles.SENIOR_CUSTOMER_SERVICE_OFFICER, Roles.ADMINISTRATOR
+            };
+            private CreateClientPanel(){
+                setLayout(new MigLayout("wrap 2"));
+
+                JTextField clientNameField=new JTextField(25);
+                JTextField clientEmailField=new JTextField(25);
+                JTextField clientPhoneNumberField=new JTextField(25);
+
+                JButton saveButton=new JButton("Save Record");
+                saveButton.addActionListener(gui.new ClientRecordListener(clientNameField,clientEmailField,clientPhoneNumberField));
+
+                add(new JLabel("Client Name"),"span 1");
+                add(clientNameField,"span 1");
+
+                add(new JLabel("Email"),"span 1");
+                add(clientEmailField,"span 1");
+
+                add(new JLabel("Phone Number"),"span 1");
+                add(clientPhoneNumberField,"span 1");
+
+                add(saveButton,"span 1");
+            }
+
+            private boolean access() {
+                return Arrays.stream(accessList).anyMatch(accessRole -> accessRole.equals(user.getRole()) | accessRole.equals(user.getTeam()));
+            }
+        }
+        private class ViewClientsPanel extends JPanel {
+            public ViewClientsPanel() {
+                setLayout(new MigLayout("wrap 2"));
+                add(new JLabel("Clients"), "span 2, center");
+            }
         }
     }
 

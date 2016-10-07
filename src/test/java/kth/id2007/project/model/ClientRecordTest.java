@@ -1,11 +1,11 @@
 package kth.id2007.project.model;
 
-import static org.junit.Assert.assertEquals;
+import org.junit.Test;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import org.junit.Test;
+import static org.junit.Assert.assertEquals;
 
 public class ClientRecordTest {
 	@Test
@@ -24,8 +24,6 @@ public class ClientRecordTest {
         assertEquals("Client Phone Number fail", phone, cli.getClientPhoneNumber());
         assertEquals("Client history fail", null, cli.getClientHistory());
         assertEquals("Client creation date mismatch", date.format(creationDate), date.format(cli.getCreationDate()));
-        
-        
     }
 
 }
