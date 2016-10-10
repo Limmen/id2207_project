@@ -20,12 +20,9 @@ public class GUI {
     private ArrayList<User> users = new ArrayList();
     private ArrayList<ClientRecord> clients = new ArrayList();
     private ArrayList<EventApplication> applications = new ArrayList();
-#ifdef NEW
     private ArrayList<HrRequest> hrRequests = new ArrayList();
-#else /* not NEW */
     private ArrayList<MainFrame> mainFrames = new ArrayList();
 
-#endif /* not NEW */
     /**
      * Class constructor
      */
