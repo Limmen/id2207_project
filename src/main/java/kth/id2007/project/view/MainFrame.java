@@ -22,6 +22,7 @@ public class MainFrame extends JFrame {
 
     private GUI gui;
     private User user;
+    private Container container;
 
     /**
      * Class constructor. Initializes the frame
@@ -35,7 +36,7 @@ public class MainFrame extends JFrame {
         this.user = user;
         setLayout(new MigLayout());
         setTitle("SEP System");
-        Container container = new Container();
+        container = new Container();
         container.setName("container_pane");
         setContentPane(container);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -44,22 +45,37 @@ public class MainFrame extends JFrame {
         setVisible(true);
     }
 
+    public void update() {
+        SwingUtilities.invokeLater(() ->
+        {
+            container.update();
+        });
+    }
+
     //Container that holds tabs
     private class Container extends JTabbedPane {
+        private HomePanel homePanel;
+        private EventApplicationsPanel eventApplicationsPanel;
+        private ClientsPanel clientsPanel;
+        private EmployeesPanel employeesPanel;
 
         public Container() {
-            HomePanel homePanel = new HomePanel();
+            homePanel = new HomePanel();
             if (homePanel.access())
                 addTab("Home", homePanel);
-            EventApplicationsPanel eventApplicationsPanel = new EventApplicationsPanel();
+            eventApplicationsPanel = new EventApplicationsPanel();
             if (eventApplicationsPanel.access())
                 addTab("Event Applications", eventApplicationsPanel);
-            ClientsPanel clientsPanel = new ClientsPanel();
+            clientsPanel = new ClientsPanel();
             if (clientsPanel.access())
                 addTab("Clients", clientsPanel);
-            EmployeesPanel employeesPanel = new EmployeesPanel();
+            employeesPanel = new EmployeesPanel();
             if (employeesPanel.access())
                 addTab("Employees", employeesPanel);
+        }
+
+        public void update() {
+            clientsPanel.update();
         }
     }
 
@@ -248,6 +264,8 @@ public class MainFrame extends JFrame {
 
     //Clients-panel/tab
     private class ClientsPanel extends JPanel {
+        private CreateClientPanel createClientPanel;
+        private ViewClientsPanel viewClientsPanel;
         private String[] accessList = new String[]{
                 Roles.SENIOR_CUSTOMER_SERVICE_OFFICER, Roles.FINANCIAL_MANAGER,
                 Roles.MARKETING_OFFICER, Roles.MARKETING_ASSISTANT, Roles.ADMINISTRATOR
@@ -255,11 +273,15 @@ public class MainFrame extends JFrame {
 
         private ClientsPanel() {
             setLayout(new MigLayout("wrap 1"));
-            CreateClientPanel createClientPanel = new CreateClientPanel();
-            ViewClientsPanel viewClientsPanel = new ViewClientsPanel();
+            createClientPanel = new CreateClientPanel();
+            viewClientsPanel = new ViewClientsPanel();
             if (createClientPanel.access())
                 add(createClientPanel, "span 1");
             add(viewClientsPanel);
+        }
+
+        public void update() {
+            viewClientsPanel.updateClientsModel();
         }
 
         private boolean access() {
@@ -300,18 +322,20 @@ public class MainFrame extends JFrame {
 
         private class ViewClientsPanel extends JPanel {
             private SimpleDateFormat format = new SimpleDateFormat("yyyy/mm/dd/hh/mm");
+            private DefaultTableModel model;
+            private String[] columnNames = new String[]{"name", "email", "phonenumber", "created"};
 
             public ViewClientsPanel() {
                 setLayout(new MigLayout("wrap 1"));
                 add(new JLabel("Clients"), "span 1, center");
-                String[] columnNames = new String[]{"name", "email", "phonenumber", "created"};
-                String rowData[][] = createTableModel();
-                DefaultTableModel model = new DefaultTableModel(rowData, columnNames) {
+                String rowData[][] = new String[0][0];
+                model = new DefaultTableModel(rowData, columnNames) {
                     @Override
                     public boolean isCellEditable(int row, int column) {
                         return false;
                     }
                 };
+                updateClientsModel();
                 JTable table = new JTable(model);
                 table.setPreferredScrollableViewportSize(table.getPreferredSize());
                 table.setFillsViewportHeight(true);
@@ -323,7 +347,7 @@ public class MainFrame extends JFrame {
                 add(scrollPane, "span 1");
             }
 
-            private String[][] createTableModel() {
+            private void updateClientsModel() {
                 ArrayList<ClientRecord> clients = gui.getClients();
                 String[][] rowData = new String[clients.size()][4];
                 for (int i = 0; i < clients.size(); i++) {
@@ -333,7 +357,9 @@ public class MainFrame extends JFrame {
                     rowData[i][2] = clientRecord.getClientPhoneNumber();
                     rowData[i][3] = format.format(clientRecord.getCreationDate());
                 }
-                return rowData;
+                model.setDataVector(rowData, columnNames);
+                repaint();
+                revalidate();
             }
         }
     }

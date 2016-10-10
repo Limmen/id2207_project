@@ -19,12 +19,12 @@ public class GUI {
     private ArrayList<User> users = new ArrayList();
     private ArrayList<ClientRecord> clients = new ArrayList();
     private ArrayList<EventApplication> applications = new ArrayList();
+    private ArrayList<MainFrame> mainFrames = new ArrayList();
 
     /**
      * Class constructor
      */
     public GUI() {
-        new StartFrame(this);
         new StartFrame(this);
     }
 
@@ -35,6 +35,10 @@ public class GUI {
      */
     public static void main(String[] args) {
         new GUI();
+    }
+
+    private void updateGUI() {
+        mainFrames.forEach((frame) -> frame.update());
     }
 
     // Action listener for login-button on the startframe.
@@ -65,15 +69,17 @@ public class GUI {
                 User user = new User(usernameField.getText(), new String(passwordField.getPassword()),
                         (String) rolesList.getSelectedItem(), (String) teamsList.getSelectedItem());
                 users.add(user);
-                new MainFrame(gui, user);
-                startFrame.setVisible(false);
+                mainFrames.add(new MainFrame(gui, user));
+                //startFrame.setVisible(false);
+                usernameField.setText("");
+                passwordField.setText("");
+                updateGUI();
             } else invalidInput("");
 
         }
     }
 
 
-    
     class ClientRecordListener implements ActionListener {
         private JTextField clientNameField;
         private JTextField clientEmailField;
@@ -92,6 +98,7 @@ public class GUI {
                 ClientRecord clientRecord = new ClientRecord(clientNameField.getText(), clientEmailField.getText(),
                         clientPhoneNumberField.getText(), null);
                 clients.add(clientRecord);
+                updateGUI();
             } else {
                 invalidInput("");
             }
@@ -122,17 +129,17 @@ public class GUI {
             this.expectedAttendeesField = expectedAttendeesField;
         }
 
-        private String errorStr="";
-        
-        private String getField(JTextField f,String desc) throws IllegalArgumentException{
-        	if(f.getText().length()>0)
-        		return f.getText();
-        	else{
-        		errorStr+=desc+"\n";
-        		throw new IllegalArgumentException();
-        	}            
+        private String errorStr = "";
+
+        private String getField(JTextField f, String desc) throws IllegalArgumentException {
+            if (f.getText().length() > 0)
+                return f.getText();
+            else {
+                errorStr += desc + "\n";
+                throw new IllegalArgumentException();
+            }
         }
-        
+
         /**
          * Invoked when an action occurs.
          *
@@ -140,26 +147,26 @@ public class GUI {
          */
         public void actionPerformed(ActionEvent e) {
 
-            	try {
-					
-				applications.add(new EventApplication(Long.parseLong(getField(budgetField, "budget")), Integer.parseInt(getField(discountField, "disscount")), getField(eventTypeField, "event type"),
-            			getField(preferencesField, "preferences"), getField(descriptionField, "description"),
-            			new Date(),new Date(),
-            			Integer.parseInt(getField(expectedAttendeesField, "expected atendees"))));
-				
-            	
-            	} catch (Exception e2) {
-            		invalidInput(errorStr);
-				}
+            try {
 
-        
+                applications.add(new EventApplication(Long.parseLong(getField(budgetField, "budget")), Integer.parseInt(getField(discountField, "disscount")), getField(eventTypeField, "event type"),
+                        getField(preferencesField, "preferences"), getField(descriptionField, "description"),
+                        new Date(), new Date(),
+                        Integer.parseInt(getField(expectedAttendeesField, "expected atendees"))));
+                updateGUI();
+
+            } catch (Exception e2) {
+                invalidInput(errorStr);
+            }
+
+
         }
     }
 
     //invalidInput dialog
     private void invalidInput(String errorStr) {
         SwingUtilities.invokeLater(() ->
-                JOptionPane.showMessageDialog(null, "These fields are empty! "+errorStr,
+                JOptionPane.showMessageDialog(null, "These fields are empty! " + errorStr,
                         "Invalid input", JOptionPane.INFORMATION_MESSAGE)
         );
     }
