@@ -2,6 +2,7 @@ package kth.id2007.project.view;
 
 import kth.id2007.project.model.ClientRecord;
 import kth.id2007.project.model.EventApplication;
+import kth.id2007.project.model.HrRequest;
 import kth.id2007.project.model.User;
 
 import javax.swing.*;
@@ -19,7 +20,7 @@ public class GUI {
     private ArrayList<User> users = new ArrayList();
     private ArrayList<ClientRecord> clients = new ArrayList();
     private ArrayList<EventApplication> applications = new ArrayList();
-
+    private ArrayList<HrRequest> hrRequests = new ArrayList();
     /**
      * Class constructor
      */
@@ -155,6 +156,29 @@ public class GUI {
         
         }
     }
+    class HrRequestListener implements ActionListener {
+        private JComboBox contractTypeCoboBox;
+        private JComboBox requestingDepartmentComboBox;
+        private JTextField jobTitleField;
+        private JTextField jobDescriptionField;
+        
+    	public HrRequestListener(JComboBox contractTypeComboBox, JComboBox contractTypeComboBox2,
+				JTextField jobTitleField, JTextField jobDescriptionField) {
+			
+			this.contractTypeCoboBox = contractTypeComboBox;
+			this.requestingDepartmentComboBox = contractTypeComboBox2;
+			this.jobTitleField = jobTitleField;
+			this.jobDescriptionField = jobDescriptionField;
+		}
+
+		@Override
+    	public void actionPerformed(ActionEvent e) {			
+			HrRequest hrRequest = new HrRequest(contractTypeCoboBox.getSelectedIndex(),
+					requestingDepartmentComboBox.getSelectedIndex(), jobTitleField.getText(), jobDescriptionField.getText());
+			hrRequests.add(hrRequest);
+    	}
+
+    }
 
     //invalidInput dialog
     private void invalidInput(String errorStr) {
@@ -174,5 +198,8 @@ public class GUI {
 
     public ArrayList<EventApplication> getApplications() {
         return applications;
+    }
+    public ArrayList<HrRequest> getHrRequests(){
+    	return hrRequests;
     }
 }   
