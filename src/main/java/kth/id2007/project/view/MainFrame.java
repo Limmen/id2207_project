@@ -264,7 +264,6 @@ public class MainFrame extends JFrame {
                 revalidate();
             }
         }
-
     }
 
     //Clients-panel/tab
@@ -499,7 +498,7 @@ public class MainFrame extends JFrame {
         private DefaultTableModel model;
         String[] columnNames = new String[]{"Contract type", "Requesting Department", "Job Title", "Job Description"};
         private String[] accessList = new String[]{
-                Roles.SENIOR_HR_MANAGER, Roles.HR_ASSISTANT,
+                Roles.SENIOR_HR_MANAGER, Roles.HR_ASSISTANT,Roles.PRODUCTION_MANAGER,Roles.SERVICE_MANAGER,
                 Roles.ADMINISTRATOR
         };
 
@@ -551,8 +550,8 @@ public class MainFrame extends JFrame {
         private ViewBudgetIssuePanel viewBudgetIssuePanel;
         private CreateBudgetIssuePanel createBudgetIssuePanel;
         private String[] accessList = new String[]{
-                Roles.SENIOR_HR_MANAGER, Roles.HR_ASSISTANT,
-                Roles.ADMINISTRATOR
+                Roles.FINANCIAL_MANAGER, Roles.PRODUCTION_MANAGER,
+                Roles.SERVICE_MANAGER,Roles.ADMINISTRATOR
         };
 
         public BudgetIssueRequestPanel() {
@@ -580,16 +579,17 @@ public class MainFrame extends JFrame {
         private DefaultTableModel model;
         private String[] columnNames = new String[]{"Contract type", "Requesting Department", "Job Title", "Job Description"};
         private String[] accessList = new String[]{
-                Roles.SENIOR_HR_MANAGER, Roles.HR_ASSISTANT,
-                Roles.ADMINISTRATOR
+                Roles.FINANCIAL_MANAGER, Roles.PRODUCTION_MANAGER,
+                Roles.SERVICE_MANAGER,Roles.ADMINISTRATOR
         };
 
         private ViewBudgetIssuePanel() {
             setLayout(new MigLayout("wrap 1"));
 
 
-            add(new JLabel("Human Resources Request"), "span 1, center");
+            add(new JLabel("Budget issue requests"), "span 1, center");
             String rowData[][] = new String[0][0];
+            
             model = new DefaultTableModel(rowData, columnNames) {
                 @Override
                 public boolean isCellEditable(int row, int column) {
@@ -610,17 +610,17 @@ public class MainFrame extends JFrame {
         }
 
         private void updateBudgetIssueRequestModel() {
-            ArrayList<HrRequest> r = gui.getHrRequests();
+            ArrayList<BudgetIssueRequest> r = gui.getBudgetIssueRequests();
             String rowData[][] = new String[r.size()][4];
             for (int i = 0; i < r.size(); i++) {
-                rowData[i][0] = HrRequest.JOB_TYPES[r.get(i).getContractType()];
-                rowData[i][1] = Roles.getDeparments()[r.get(i).getContractType()];
-                rowData[i][2] = r.get(i).getJobTitle();
-                rowData[i][3] = r.get(i).getJobDescription();
+                rowData[i][0] = Roles.getDeparments()[r.get(i).getRequestingDepartment()];
+                rowData[i][1] = r.get(i).getProjectRefrenceId()+"";
+                rowData[i][2] = r.get(i).getAmount()+"";
+                rowData[i][3] = r.get(i).getReason();
             }
             model.setDataVector(rowData, columnNames);
             repaint();
-            revalidate();
+            revalidate();            
         }
 
         private boolean access() {
@@ -637,8 +637,8 @@ public class MainFrame extends JFrame {
         private DefaultComboBoxModel model;
 
         private String[] accessList = new String[]{
-                Roles.SENIOR_HR_MANAGER, Roles.HR_ASSISTANT,
-                Roles.ADMINISTRATOR
+                Roles.PRODUCTION_MANAGER,
+                Roles.SERVICE_MANAGER,Roles.ADMINISTRATOR
         };
 
         private CreateBudgetIssuePanel() {

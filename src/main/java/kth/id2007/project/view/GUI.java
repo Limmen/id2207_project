@@ -24,7 +24,7 @@ public class GUI {
     private ArrayList<EventApplication> applications = new ArrayList();
     private ArrayList<HrRequest> hrRequests = new ArrayList();
     private ArrayList<MainFrame> mainFrames = new ArrayList();
-
+    private ArrayList<BudgetIssueRequest> budgetIssues = new ArrayList<>();
     /**
      * Class constructor
      */
@@ -203,6 +203,7 @@ public class GUI {
     		this.reasonField = reasonField;
     		this.requestingDepartmentComboBox = requestingDepartmentComboBox;
     		this.projectComboBox = projectComboBox;
+    		
     	}
 
     	@Override
@@ -213,7 +214,8 @@ public class GUI {
 			}
     		BudgetIssueRequest b = new BudgetIssueRequest(requestingDepartmentComboBox.getSelectedIndex(),
     				projects[projectComboBox.getSelectedIndex()], Integer.valueOf(amountField.getText()).intValue(), reasonField.getText());
-
+    		budgetIssues.add(b);
+    		updateGUI();
     	}
 
     }
@@ -240,5 +242,8 @@ public class GUI {
 
     public ArrayList<HrRequest> getHrRequests() {
         return hrRequests;
+    }
+    public ArrayList<BudgetIssueRequest> getBudgetIssueRequests(){
+    	return budgetIssues;
     }
 }   
