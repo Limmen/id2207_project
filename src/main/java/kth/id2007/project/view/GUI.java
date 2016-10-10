@@ -1,8 +1,10 @@
 package kth.id2007.project.view;
 
+import kth.id2007.project.model.BudgetIssueRequest;
 import kth.id2007.project.model.ClientRecord;
 import kth.id2007.project.model.EventApplication;
 import kth.id2007.project.model.HrRequest;
+import kth.id2007.project.model.Roles;
 import kth.id2007.project.model.User;
 
 import javax.swing.*;
@@ -187,6 +189,32 @@ public class GUI {
             hrRequests.add(hrRequest);
             updateGUI();
         }
+
+    }
+    class BudgetIssueListener implements ActionListener {
+
+        private JTextField amountField,reasonField;
+        private JComboBox requestingDepartmentComboBox,projectComboBox;
+        
+    	public BudgetIssueListener(JTextField amountField, JTextField reasonField, JComboBox requestingDepartmentComboBox,
+    			JComboBox projectComboBox) {
+    	
+    		this.amountField = amountField;
+    		this.reasonField = reasonField;
+    		this.requestingDepartmentComboBox = requestingDepartmentComboBox;
+    		this.projectComboBox = projectComboBox;
+    	}
+
+    	@Override
+    	public void actionPerformed(ActionEvent e) {
+            long projects[]=new long[gui.getApplications().size()];
+            for (int i = 0; i < gui.getApplications().size(); i++) {
+				projects[i]=gui.getApplications().get(i).getProjectRefrenceId();
+			}
+    		BudgetIssueRequest b = new BudgetIssueRequest(requestingDepartmentComboBox.getSelectedIndex(),
+    				projects[projectComboBox.getSelectedIndex()], Integer.valueOf(amountField.getText()).intValue(), reasonField.getText());
+
+    	}
 
     }
 
