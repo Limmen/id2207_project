@@ -10,8 +10,6 @@ import net.miginfocom.swing.MigLayout;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -61,7 +59,9 @@ public class MainFrame extends JFrame {
         private EventApplicationsPanel eventApplicationsPanel;
         private ClientsPanel clientsPanel;
         private EmployeesPanel employeesPanel;
-
+        private HrRequestPanel hrRequestPanel;
+        private BudgetIssueRequestPanel budgetIssueRequestPanel;
+        
         public Container() {
             homePanel = new HomePanel();
             if (homePanel.access())
@@ -75,9 +75,13 @@ public class MainFrame extends JFrame {
             employeesPanel = new EmployeesPanel();
             if (employeesPanel.access())
                 addTab("Employees", employeesPanel);
-            HrRequestPanel hrRequestPanel = new HrRequestPanel();
+            hrRequestPanel = new HrRequestPanel();
             if (hrRequestPanel.access()){
                 addTab("HR Request", hrRequestPanel);
+            }
+            budgetIssueRequestPanel=new BudgetIssueRequestPanel();
+            if(budgetIssueRequestPanel.access()){
+            	addTab("Budget Issue",budgetIssueRequestPanel);
             }
             
         }
@@ -481,7 +485,7 @@ public class MainFrame extends JFrame {
             }
         }
 
-        //Employees-panel/tab
+ 
         private class ViewHrRequestPanel extends JPanel {
             private String[] accessList = new String[]{
                     Roles.SENIOR_HR_MANAGER, Roles.HR_ASSISTANT,
@@ -537,5 +541,145 @@ public class MainFrame extends JFrame {
 
     }
     
+    private class BudgetIssueRequestPanel extends JPanel{
+    	private String[] accessList = new String[]{
+                Roles.SENIOR_HR_MANAGER, Roles.HR_ASSISTANT,
+               Roles.ADMINISTRATOR
+        };
 
+        public BudgetIssueRequestPanel() {        	       	
+            setLayout(new MigLayout("wrap 1"));
+            add(new JLabel("Budget Issue Request"), "span 1, center");
+            
+               //Create         
+            CreateBudgetIssuePanel createBudgetIssuePanel=new CreateBudgetIssuePanel();
+            
+            if(createBudgetIssuePanel.access()){
+            	add(createBudgetIssuePanel,"span 2");
+            }
+            //View
+            ViewBudgetIssuePanel viewBudgetIssuePanel=new ViewBudgetIssuePanel();
+            if(viewBudgetIssuePanel.access()){
+            	add(viewBudgetIssuePanel,"span 2");
+            }
+
+
+        }
+        
+        private class ViewBudgetIssuePanel extends JPanel {
+            private String[] accessList = new String[]{
+                    Roles.SENIOR_HR_MANAGER, Roles.HR_ASSISTANT,
+                   Roles.ADMINISTRATOR
+            };
+
+            private ViewBudgetIssuePanel() {        	       	
+                setLayout(new MigLayout("wrap 1"));
+                            
+
+                
+                add(new JLabel("Human Resources Request"), "span 1, center");
+                String[] columnNames = new String[]{"Contract type","Requesting Department", "Job Title", "Job Description"};
+                String rowData[][] = createTableModel();
+                DefaultTableModel model = new DefaultTableModel(rowData, columnNames) {
+                    @Override
+                    public boolean isCellEditable(int row, int column) {
+                        return false;
+                    }
+                };
+                JTable table = new JTable(model);
+                table.setPreferredScrollableViewportSize(table.getPreferredSize());
+                table.setFillsViewportHeight(true);
+                JScrollPane scrollPane = new JScrollPane(table, JScrollPane.VERTICAL_SCROLLBAR_NEVER,
+                        JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+                Dimension dim = new Dimension(800, 400);
+                int rowsDisplayed = 15;
+                scrollPane.setPreferredSize(new Dimension(dim.width, table.getRowHeight() * rowsDisplayed));
+                add(scrollPane, "span 1");
+                
+                
+
+
+            }
+
+            private String[][] createTableModel() {
+            	/*
+            	ArrayList<HrRequest> r= gui.getHrRequests();
+            	String str[][]=new String[r.size()][4];
+            	for (int i = 0; i < r.size(); i++) {
+					str[i][0]=HrRequest.JOB_TYPES[r.get(i).getContractType()];
+					str[i][0]=Roles.getDeparments()[r.get(i).getContractType()];
+					str[i][0]=r.get(i).getJobTitle();
+					str[i][0]=r.get(i).getJobDescription();
+				}
+            	return str;*/return null;
+            }
+
+            private boolean access() {
+                return Arrays.stream(accessList).anyMatch(accessRole -> accessRole.equals(user.getRole()) | accessRole.equals(user.getTeam()));
+            }
+
+            
+            
+        }
+        private class CreateBudgetIssuePanel extends JPanel {
+            private JTextField amountField,reasonField;
+            private JComboBox requestingDepartmentComboBox,projectComboBox;
+            private JButton saveButton;
+        	
+        	private String[] accessList = new String[]{
+                    Roles.SENIOR_HR_MANAGER, Roles.HR_ASSISTANT,
+                   Roles.ADMINISTRATOR
+            };
+
+            private CreateBudgetIssuePanel() {        	       	
+                setLayout(new MigLayout("wrap 1"));
+                            
+
+                
+                requestingDepartmentComboBox=new JComboBox(Roles.getDeparments());
+                String projects[]=new String[gui.getApplications().size()];
+                for (int i = 0; i < gui.getApplications().size(); i++) {
+					projects[i]=""+gui.getApplications().get(i).getProjectRefrenceId();
+				}
+                projectComboBox=new JComboBox(projects);
+                amountField=new JTextField(25);
+                reasonField=new JTextField(25);
+                saveButton=new JButton("Submit Request");
+                add(new JLabel("Requesting Department"),"span 1");
+                add(requestingDepartmentComboBox);
+                add(new JLabel("Project Reference"),"span 1");
+                add(projectComboBox);
+                add(new JLabel("Amount"),"span 1");
+                add(amountField);
+                add(new JLabel("Reason"),"span 1");
+                add(reasonField);
+                
+                add(saveButton,"span 1");
+                saveButton.addActionListener(gui.new BudgetIssueListener(amountField,reasonField,requestingDepartmentComboBox,projectComboBox));
+
+
+            }
+
+            private String[][] createTableModel() {
+            	/*
+            	ArrayList<HrRequest> r= gui.getHrRequests();
+            	String str[][]=new String[r.size()][4];
+            	for (int i = 0; i < r.size(); i++) {
+					str[i][0]=HrRequest.JOB_TYPES[r.get(i).getContractType()];
+					str[i][0]=Roles.getDeparments()[r.get(i).getContractType()];
+					str[i][0]=r.get(i).getJobTitle();
+					str[i][0]=r.get(i).getJobDescription();
+				}
+            	return str;*/return null;
+            }
+
+            private boolean access() {
+                return Arrays.stream(accessList).anyMatch(accessRole -> accessRole.equals(user.getRole()) | accessRole.equals(user.getTeam()));
+            }
+
+        }
+        private boolean access() {
+            return Arrays.stream(accessList).anyMatch(accessRole -> accessRole.equals(user.getRole()) | accessRole.equals(user.getTeam()));
+        }
+    }
 }
