@@ -33,7 +33,17 @@ public final class Roles {
     public static final String COOKING_TEAM = "Cooking team";
     public static final String RESTAURANT_SERVICES_TEAM = "Restaurant services team";
     public static final String NO_TEAM = "No team";
-
+    public static final String PRODUCTION_DEPARTMENT= "Production Department";
+    public static final String SERVICE_DEPARTMENT= "Serivce Department"; 
+    
+    /**
+     * Returns all teams
+     * @return
+     */
+    public static  String[] getDeparments(){
+    	return new String[]{SERVICE_DEPARTMENT,PRODUCTION_DEPARTMENT};
+    }
+    
     /**
      * Returns all roles of SEP
      * @return array of roles

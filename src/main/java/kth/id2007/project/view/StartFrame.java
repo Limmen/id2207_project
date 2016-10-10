@@ -12,6 +12,7 @@ public class StartFrame extends JFrame
 {
 	private GUI gui;
 
+	private final boolean DEBUG=true;
 	/**
 	 * Class constructor. Initializes the frame.
 	 *
@@ -55,10 +56,19 @@ public class StartFrame extends JFrame
 		add(lbl,"span 1");
 		add(teamsList, "span 1");
 		add(loginButton,"span 2, gaptop 20");
-
+		//Debug
+		if(DEBUG){
+		userNameField.setText("test");
+		passwordField.setText("test");
+		rolesList.setSelectedIndex(12);
+		}
+		
 		pack();
 		setLocationRelativeTo(null); //center on screen
 		setVisible(true);
+		//Debug
+		if(DEBUG)
+			loginButton.doClick();
 	}
 
 }
