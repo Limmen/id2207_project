@@ -149,42 +149,44 @@ public class GUI {
          */
         public void actionPerformed(ActionEvent e) {
 
-            	try {
-					
-				applications.add(new EventApplication(Long.parseLong(getField(budgetField, "budget")), Integer.parseInt(getField(discountField, "disscount")), getField(eventTypeField, "event type"),
-            			getField(preferencesField, "preferences"), getField(descriptionField, "description"),
-            			new Date(),new Date(),
-            			Integer.parseInt(getField(expectedAttendeesField, "expected atendees"))));
-				
-            	
-            	} catch (Exception e2) {
-            		invalidInput(errorStr);
-				}
+            try {
 
-        
+                applications.add(new EventApplication(Long.parseLong(getField(budgetField, "budget")), Integer.parseInt(getField(discountField, "disscount")), getField(eventTypeField, "event type"),
+                        getField(preferencesField, "preferences"), getField(descriptionField, "description"),
+                        new Date(), new Date(),
+                        Integer.parseInt(getField(expectedAttendeesField, "expected atendees"))));
+                updateGUI();
+
+            } catch (Exception e2) {
+                invalidInput(errorStr);
+            }
+
+
         }
     }
+
     class HrRequestListener implements ActionListener {
         private JComboBox contractTypeCoboBox;
         private JComboBox requestingDepartmentComboBox;
         private JTextField jobTitleField;
         private JTextField jobDescriptionField;
-        
-    	public HrRequestListener(JComboBox contractTypeComboBox, JComboBox contractTypeComboBox2,
-				JTextField jobTitleField, JTextField jobDescriptionField) {
-			
-			this.contractTypeCoboBox = contractTypeComboBox;
-			this.requestingDepartmentComboBox = contractTypeComboBox2;
-			this.jobTitleField = jobTitleField;
-			this.jobDescriptionField = jobDescriptionField;
-		}
 
-		@Override
-    	public void actionPerformed(ActionEvent e) {			
-			HrRequest hrRequest = new HrRequest(contractTypeCoboBox.getSelectedIndex(),
-					requestingDepartmentComboBox.getSelectedIndex(), jobTitleField.getText(), jobDescriptionField.getText());
-			hrRequests.add(hrRequest);
-    	}
+        public HrRequestListener(JComboBox contractTypeComboBox, JComboBox contractTypeComboBox2,
+                                 JTextField jobTitleField, JTextField jobDescriptionField) {
+
+            this.contractTypeCoboBox = contractTypeComboBox;
+            this.requestingDepartmentComboBox = contractTypeComboBox2;
+            this.jobTitleField = jobTitleField;
+            this.jobDescriptionField = jobDescriptionField;
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            HrRequest hrRequest = new HrRequest(contractTypeCoboBox.getSelectedIndex(),
+                    requestingDepartmentComboBox.getSelectedIndex(), jobTitleField.getText(), jobDescriptionField.getText());
+            hrRequests.add(hrRequest);
+            updateGUI();
+        }
 
     }
 
@@ -207,7 +209,8 @@ public class GUI {
     public ArrayList<EventApplication> getApplications() {
         return applications;
     }
-    public ArrayList<HrRequest> getHrRequests(){
-    	return hrRequests;
+
+    public ArrayList<HrRequest> getHrRequests() {
+        return hrRequests;
     }
 }   
