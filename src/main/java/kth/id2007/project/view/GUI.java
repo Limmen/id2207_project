@@ -246,4 +246,14 @@ public class GUI {
     public ArrayList<BudgetIssueRequest> getBudgetIssueRequests(){
     	return budgetIssues;
     }
+    public void removeBudgetIssueRequest(int n){    	
+    	budgetIssues.remove(n);
+    	updateGUI();
+    }
+
+	public void removeHrRequest(int selectedRow) {
+		hrRequests.remove(selectedRow);
+		updateGUI();
+		
+	}
 }   

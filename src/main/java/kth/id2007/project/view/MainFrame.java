@@ -6,6 +6,8 @@ import net.miginfocom.swing.MigLayout;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -501,7 +503,10 @@ public class MainFrame extends JFrame {
                 Roles.SENIOR_HR_MANAGER, Roles.HR_ASSISTANT,Roles.PRODUCTION_MANAGER,Roles.SERVICE_MANAGER,
                 Roles.ADMINISTRATOR
         };
-
+        private String[] accessListCanResolve = new String[]{
+                Roles.SENIOR_HR_MANAGER, Roles.HR_ASSISTANT,Roles.PRODUCTION_MANAGER,Roles.SERVICE_MANAGER,
+                Roles.ADMINISTRATOR
+        };
         private ViewHrRequestPanel() {
             setLayout(new MigLayout("wrap 1"));
             add(new JLabel("Human Resources Request"), "span 1, center");
@@ -522,7 +527,24 @@ public class MainFrame extends JFrame {
             int rowsDisplayed = 15;
             scrollPane.setPreferredSize(new Dimension(dim.width, table.getRowHeight() * rowsDisplayed));
             add(scrollPane, "span 1");
-
+            //Resolve Hr request button
+            //Check if user can resolve a budget issue
+            if(Arrays.stream(accessListCanResolve).anyMatch(accessRole -> accessRole.equals(user.getRole()) | accessRole.equals(user.getTeam()))){
+	            
+	            JButton resolveButton = new JButton("Resolve selected");
+	            resolveButton.addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent arg0) {
+						if(table.getSelectedRow()>=0){
+						gui.removeHrRequest(table.getSelectedRow());					
+					}else{
+						
+					}
+						}
+				});
+	            add(resolveButton,"span 1");
+            }
 
         }
 
@@ -545,15 +567,17 @@ public class MainFrame extends JFrame {
         }
 
     }
-
+    
+    
     private class BudgetIssueRequestPanel extends JPanel {
         private ViewBudgetIssuePanel viewBudgetIssuePanel;
         private CreateBudgetIssuePanel createBudgetIssuePanel;
+        
         private String[] accessList = new String[]{
                 Roles.FINANCIAL_MANAGER, Roles.PRODUCTION_MANAGER,
                 Roles.SERVICE_MANAGER,Roles.ADMINISTRATOR
         };
-
+        
         public BudgetIssueRequestPanel() {
             setLayout(new MigLayout("wrap 1"));
             add(new JLabel("Budget Issue Request"), "span 1, center");
@@ -575,6 +599,7 @@ public class MainFrame extends JFrame {
             createBudgetIssuePanel.updateProjects();
         }
 
+        
     private class ViewBudgetIssuePanel extends JPanel {
         private DefaultTableModel model;
         private String[] columnNames = new String[]{"Contract type", "Requesting Department", "Job Title", "Job Description"};
@@ -582,7 +607,10 @@ public class MainFrame extends JFrame {
                 Roles.FINANCIAL_MANAGER, Roles.PRODUCTION_MANAGER,
                 Roles.SERVICE_MANAGER,Roles.ADMINISTRATOR
         };
-
+        private String[] accessListCanResolve = new String[]{
+                Roles.FINANCIAL_MANAGER,Roles.ADMINISTRATOR
+        };
+        JTable table;
         private ViewBudgetIssuePanel() {
             setLayout(new MigLayout("wrap 1"));
 
@@ -596,7 +624,7 @@ public class MainFrame extends JFrame {
                     return false;
                 }
             };
-            JTable table = new JTable(model);
+            table= new JTable(model);
             table.setPreferredScrollableViewportSize(table.getPreferredSize());
             table.setFillsViewportHeight(true);
             JScrollPane scrollPane = new JScrollPane(table, JScrollPane.VERTICAL_SCROLLBAR_NEVER,
@@ -605,8 +633,25 @@ public class MainFrame extends JFrame {
             int rowsDisplayed = 15;
             scrollPane.setPreferredSize(new Dimension(dim.width, table.getRowHeight() * rowsDisplayed));
             add(scrollPane, "span 1");
-
-
+            
+            //Check if user can resolve a budget issue
+            if(Arrays.stream(accessListCanResolve).anyMatch(accessRole -> accessRole.equals(user.getRole()) | accessRole.equals(user.getTeam()))){
+	            
+	            JButton resolveButton = new JButton("Resolve selected");
+	            resolveButton.addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent arg0) {
+						if(table.getSelectedRow()>=0){
+						ArrayList<BudgetIssueRequest> r = gui.getBudgetIssueRequests();
+						gui.removeBudgetIssueRequest(table.getSelectedRow());					
+					}else{
+						
+					}
+						}
+				});
+	            add(resolveButton,"span 1");
+            }
         }
 
         private void updateBudgetIssueRequestModel() {
@@ -618,6 +663,7 @@ public class MainFrame extends JFrame {
                 rowData[i][2] = r.get(i).getAmount()+"";
                 rowData[i][3] = r.get(i).getReason();
             }
+            
             model.setDataVector(rowData, columnNames);
             repaint();
             revalidate();            
