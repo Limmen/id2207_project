@@ -8,6 +8,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * GUI Controller, all calls from the view to the model goes through here.
@@ -29,7 +30,20 @@ public class GUI {
     public GUI() {
         new StartFrame(this);
     }
-
+    
+    
+    private void clearFields(JTextField ... fields){
+    	for(JTextField t:fields){
+    		t.setText("");
+    	}
+    }
+    private boolean fieldsContainText(JTextField ... fields){
+    	for(JTextField t:fields){
+    		if(t.getText().length()==0)
+    			return false;
+    	}
+    	return true;
+    }
     /**
      * Main method, entry point of the program. Initializes the GUI.
      *
@@ -68,17 +82,28 @@ public class GUI {
          */
         public void actionPerformed(ActionEvent e) {
             if (usernameField.getText().length() > 0 && passwordField.getPassword().length > 0) {
-                User user = new User(usernameField.getText(), new String(passwordField.getPassword()),
-                        (String) rolesList.getSelectedItem(), (String) teamsList.getSelectedItem());
-                users.add(user);
-                mainFrames.add(new MainFrame(gui, user));
-                //startFrame.setVisible(false);
-                usernameField.setText("");
-                passwordField.setText("");
-                updateGUI();
+            	
+            	boolean userExists=true;
+            	for(User u:users)
+            		if(u.getUsername().equals(usernameField.getText()))
+            			userExists=false;
+            	if(userExists){ 			
+	                User user = new User(usernameField.getText(), new String(passwordField.getPassword()),
+	                        (String) rolesList.getSelectedItem(), (String) teamsList.getSelectedItem());
+	                users.add(user);
+	                mainFrames.add(new MainFrame(gui, user));
+	                //startFrame.setVisible(false);
+	                usernameField.setText("");
+	                passwordField.setText("");
+	                updateGUI();
+            	}else{
+            		errorMessage("User \""+usernameField.getText()+"\" alredy exists!");
+            	}
             } else invalidInput("");
 
         }
+
+
     }
 
 
@@ -94,16 +119,27 @@ public class GUI {
         }
 
         public void actionPerformed(ActionEvent arg0) {
-            if ((clientNameField.getText().length() > 0) &&
-                    (clientEmailField.getText().length() > 0) &&
-                    (clientPhoneNumberField.getText().length() > 0)) {
+        	      	
+        	if(clientNameField.getText().length()==0||clientEmailField.getText().length()==0||clientPhoneNumberField.getText().length()==0){
+        		invalidInput("");
+            }else{
                 ClientRecord clientRecord = new ClientRecord(clientNameField.getText(), clientEmailField.getText(),
                         clientPhoneNumberField.getText(), null);
                 clients.add(clientRecord);
+                clearFields(clientEmailField,clientNameField,clientPhoneNumberField);
                 updateGUI();
-            } else {
-                invalidInput("");
-            }
+                
+           		try {
+               
+				} catch (NumberFormatException e2) {
+					if(e2.getMessage()=="null")
+						invalidComboBoxValue();
+					else
+						invalidNumberInput();
+				}
+
+            }   	
+        	
         }
     }
 
@@ -153,16 +189,31 @@ public class GUI {
          */
         public void actionPerformed(ActionEvent e) {
 
-            try {
-                applications.add(new EventApplication(Long.parseLong(getField(budgetField, "budget")), Integer.parseInt(getField(discountField, "disscount")), getField(eventTypeField, "event type"),
-                        getField(preferencesField, "preferences"), getField(descriptionField, "description"),
-                        fromDatePicker.getJFormattedTextField().getText(), toDatePicker.getJFormattedTextField().getText(),
-                        Integer.parseInt(getField(expectedAttendeesField, "expected atendees")), budgetCommentsField.getText(), (String) statusField.getSelectedItem(), ""));
-                updateGUI();
+        	
+        	
+        	if(!fieldsContainText(budgetField,discountField,eventTypeField,preferencesField,descriptionField,expectedAttendeesField
+        			,budgetCommentsField,fromDatePicker.getJFormattedTextField(),toDatePicker.getJFormattedTextField())){
+        		invalidInput("");
+            }else{
+            	
+           		try {
+                    applications.add(new EventApplication(Long.parseLong(getField(budgetField, "budget")), Integer.parseInt(getField(discountField, "disscount")), getField(eventTypeField, "event type"),
+                            getField(preferencesField, "preferences"), getField(descriptionField, "description"),
+                            fromDatePicker.getJFormattedTextField().getText(), toDatePicker.getJFormattedTextField().getText(),
+                            Integer.parseInt(getField(expectedAttendeesField, "expected atendees")), budgetCommentsField.getText(), (String) statusField.getSelectedItem(), ""));
+                	clearFields(budgetField,discountField,eventTypeField,preferencesField,descriptionField,expectedAttendeesField
+                			,budgetCommentsField,fromDatePicker.getJFormattedTextField(),toDatePicker.getJFormattedTextField());
+                    updateGUI();
+				} catch (NumberFormatException e2) {
+					if(e2.getMessage()=="null")
+						invalidComboBoxValue();
+					else
+						invalidNumberInput();
+				}
 
-            } catch (Exception e2) {
-                invalidInput(errorStr);
             }
+        	
+        
 
 
         }
@@ -187,12 +238,32 @@ public class GUI {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            HrRequest hrRequest = new HrRequest(Long.parseLong((String) projectComboBox.getSelectedItem()),
-                    contractTypeCoboBox.getSelectedIndex(),
-                    requestingDepartmentComboBox.getSelectedIndex(), jobTitleField.getText(), jobDescriptionField.getText());
-            hrRequests.add(hrRequest);
-            updateGUI();
+        	
+        	if(jobTitleField.getText().length()==0||jobDescriptionField.getText().length()==0){
+        		invalidInput("");
+            }else{
+            	
+           		try {
+                    HrRequest hrRequest = new HrRequest(Long.parseLong((String) projectComboBox.getSelectedItem()),
+                            contractTypeCoboBox.getSelectedIndex(),
+                            requestingDepartmentComboBox.getSelectedIndex(), jobTitleField.getText(), jobDescriptionField.getText());
+                    hrRequests.add(hrRequest);
+                	clearFields(jobTitleField,jobDescriptionField);
+                    updateGUI();
+				} catch (NumberFormatException e2) {
+					if(e2.getMessage()=="null")
+						invalidComboBoxValue();
+					else
+						invalidNumberInput();
+				}
+
+            }
+        
         }
+
+	
+
+        
 
     }
 
@@ -213,14 +284,33 @@ public class GUI {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            long projects[] = new long[gui.getApplications().size()];
-            for (int i = 0; i < gui.getApplications().size(); i++) {
-                projects[i] = gui.getApplications().get(i).getProjectRefrenceId();
+            
+        	if(amountField.getText().length()==0||reasonField.getText().length()==0){
+        		invalidInput("");
+            }else{ 
+           		try {
+                   	long projects[] = new long[gui.getApplications().size()];            
+                    for (int i = 0; i < gui.getApplications().size(); i++) {
+                        projects[i] = gui.getApplications().get(i).getProjectRefrenceId();
+                    }
+                    
+                    BudgetIssueRequest b = new BudgetIssueRequest(requestingDepartmentComboBox.getSelectedIndex(),
+                            projects[projectComboBox.getSelectedIndex()], Integer.valueOf(amountField.getText()).intValue(), reasonField.getText());
+                    budgetIssues.add(b);
+                   	clearFields(amountField,reasonField);
+                    updateGUI();
+				} catch (Exception e2) {
+					System.out.println(e2.getMessage());
+					if(e2.getMessage()=="null"||e2.getMessage().contains("-1"))
+						invalidComboBoxValue();
+					else
+						invalidNumberInput();
+				}
+
             }
-            BudgetIssueRequest b = new BudgetIssueRequest(requestingDepartmentComboBox.getSelectedIndex(),
-                    projects[projectComboBox.getSelectedIndex()], Integer.valueOf(amountField.getText()).intValue(), reasonField.getText());
-            budgetIssues.add(b);
-            updateGUI();
+     
+        	
+
         }
 
     }
@@ -240,22 +330,58 @@ public class GUI {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+        	
+        	
 
-            SubTeamTask task = new SubTeamTask(Long.parseLong((String) projectComboBox.getSelectedItem()),
-                    descriptionField.getText(), assignedToField.getText(), Integer.parseInt(priorityField.getText()));
-            tasks.add(task);
-            updateGUI();
+        	
+        	if(descriptionField.getText().length()==0||assignedToField.getText().length()==0||priorityField.getText().length()==0){
+        		invalidInput("");
+            }else{
+            	
+           		try {
+                    SubTeamTask task = new SubTeamTask(Long.parseLong((String) projectComboBox.getSelectedItem()),
+                            descriptionField.getText(), assignedToField.getText(), Integer.parseInt(priorityField.getText()));
+                    tasks.add(task);
+                    updateGUI();
+				} catch (NumberFormatException e2) {
+					if(e2.getMessage()=="null")
+						invalidComboBoxValue();
+					else
+						invalidNumberInput();
+				}
+
+            }
+
         }
-    }
 
+
+
+    }
+	private void errorMessage(String string) {
+	       SwingUtilities.invokeLater(() ->
+           JOptionPane.showMessageDialog(null,string,
+                   "Error", JOptionPane.INFORMATION_MESSAGE)
+   );
+	}
     //invalidInput dialog
     private void invalidInput(String errorStr) {
         SwingUtilities.invokeLater(() ->
-                JOptionPane.showMessageDialog(null, "These fields are empty! " + errorStr,
+                JOptionPane.showMessageDialog(null, "Please fill all fields" + errorStr,
                         "Invalid input", JOptionPane.INFORMATION_MESSAGE)
         );
     }
-
+	private void invalidNumberInput() {
+        SwingUtilities.invokeLater(() ->
+        JOptionPane.showMessageDialog(null, "There is text in number field(s)",
+                "Invalid input", JOptionPane.INFORMATION_MESSAGE)
+);
+	}
+	private void invalidComboBoxValue() {
+        SwingUtilities.invokeLater(() ->
+        JOptionPane.showMessageDialog(null, "Invalid combobox selection",
+                "Invalid input", JOptionPane.INFORMATION_MESSAGE)
+);	
+	}
     class EventEditListener implements ActionListener {
         private DefaultTableModel model;
         private User user;

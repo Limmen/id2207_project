@@ -46,6 +46,7 @@ public class MainFrame extends JFrame {
         pack();
         setLocationRelativeTo(null); //center on screen
         setVisible(true);
+        
     }
 
     public void update() {
@@ -108,7 +109,7 @@ public class MainFrame extends JFrame {
     private class HomePanel extends JPanel {
         String[] accessList = Roles.roles();
         ApproveApplicationsPanel approveApplicationsPanel;
-
+        private JButton logoutButton;
         private HomePanel() {
             setLayout(new MigLayout("wrap 2"));
             JLabel lbl = new JLabel("Home");
@@ -132,8 +133,19 @@ public class MainFrame extends JFrame {
             lbl = new JLabel(user.getTeam());
             lbl.setName("team");
             add(lbl, "span 1");
+            logoutButton=new JButton("Logout");
+            add(logoutButton,"span 2");
             approveApplicationsPanel = new ApproveApplicationsPanel();
             add(approveApplicationsPanel, "span 2");
+            
+            logoutButton.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					dispose();
+				}
+			});
+
         }
 
         void update() {
@@ -643,13 +655,15 @@ public class MainFrame extends JFrame {
                         if (table.getSelectedRow() >= 0) {
                             gui.removeHrRequest(table.getSelectedRow());
                         } else {
-
+                            SwingUtilities.invokeLater(() ->
+                            JOptionPane.showMessageDialog(null, "Please select a row to resolve!",
+                                    "Error", JOptionPane.INFORMATION_MESSAGE)
+                            		);
                         }
                     }
                 });
                 add(resolveButton, "span 1");
             }
-
         }
 
         private void updateHrRequestModel() {
@@ -749,7 +763,10 @@ public class MainFrame extends JFrame {
                             if (table.getSelectedRow() >= 0) {
                                 gui.removeBudgetIssueRequest(table.getSelectedRow());
                             } else {
-
+                                SwingUtilities.invokeLater(() ->
+                                JOptionPane.showMessageDialog(null, "Please select a row to resolve!",
+                                        "Error", JOptionPane.INFORMATION_MESSAGE)
+                                		);
                             }
                         }
                     });
