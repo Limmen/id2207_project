@@ -747,7 +747,7 @@ public class MainFrame extends JFrame {
                         @Override
                         public void actionPerformed(ActionEvent arg0) {
                             if (table.getSelectedRow() >= 0) {
-                                gui.removeHrRequest(table.getSelectedRow());
+                                gui.removeBudgetIssueRequest(table.getSelectedRow());
                             } else {
 
                             }

@@ -352,6 +352,7 @@ public class GUI {
     public ArrayList<SubTeamTask> getTasks() {
         return tasks;
     }
+
     public void removeBudgetIssueRequest(int n){    	
     	budgetIssues.remove(n);
     	updateGUI();

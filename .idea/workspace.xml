@@ -6,10 +6,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b4aea9ad-372b-4d31-9e91-f18fd4a20fec" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/kth/id2007/project/model/BudgetIssueRequest.java" afterPath="$PROJECT_DIR$/src/main/java/kth/id2007/project/model/BudgetIssueRequest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/kth/id2007/project/model/HrRequest.java" afterPath="$PROJECT_DIR$/src/main/java/kth/id2007/project/model/HrRequest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/kth/id2007/project/view/GUI.java" afterPath="$PROJECT_DIR$/src/main/java/kth/id2007/project/view/GUI.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/kth/id2007/project/view/MainFrame.java" afterPath="$PROJECT_DIR$/src/main/java/kth/id2007/project/view/MainFrame.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/kth/id2007/project/model/BudgetIssueRequestTest.java" afterPath="$PROJECT_DIR$/src/test/java/kth/id2007/project/model/BudgetIssueRequestTest.java" />
     </list>
     <ignored path="sep_system.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -40,11 +38,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="MainFrame.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="MainFrame.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/kth/id2007/project/view/MainFrame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="236">
-              <caret line="756" column="17" selection-start-line="756" selection-start-column="17" selection-end-line="756" selection-end-column="17" />
+            <state relative-caret-position="396">
+              <caret line="756" column="9" selection-start-line="756" selection-start-column="9" selection-end-line="756" selection-end-column="9" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -52,11 +50,31 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pom.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="278">
+              <caret line="59" column="0" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="GUI.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/kth/id2007/project/view/GUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="402">
-              <caret line="362" column="8" selection-start-line="362" selection-start-column="8" selection-end-line="362" selection-end-column="8" />
+            <state relative-caret-position="312">
+              <caret line="356" column="29" selection-start-line="356" selection-start-column="29" selection-end-line="356" selection-end-column="29" />
               <folding />
             </state>
           </provider>
@@ -82,11 +100,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MainFrame.java.orig" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MainFrame.java.orig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/kth/id2007/project/view/MainFrame.java.orig">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="251">
               <caret line="636" column="70" selection-start-line="636" selection-start-column="70" selection-end-line="636" selection-end-column="70" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="README.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/README.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="14" column="54" selection-start-line="14" selection-start-column="33" selection-end-line="14" selection-end-column="56" />
               <folding />
             </state>
           </provider>
@@ -159,10 +187,10 @@
         <option value="$PROJECT_DIR$/src/main/java/kth/id2007/project/model/EventStatus.java" />
         <option value="$PROJECT_DIR$/src/main/java/kth/id2007/project/model/EventApplication.java" />
         <option value="$PROJECT_DIR$/src/test/java/kth/id2007/project/model/EventApplicationTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/kth/id2007/project/view/GUI.java" />
         <option value="$PROJECT_DIR$/src/main/java/kth/id2007/project/model/HrRequest.java" />
         <option value="$PROJECT_DIR$/src/main/java/kth/id2007/project/model/BudgetIssueRequest.java" />
         <option value="$PROJECT_DIR$/src/test/java/kth/id2007/project/model/BudgetIssueRequestTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/kth/id2007/project/view/GUI.java" />
         <option value="$PROJECT_DIR$/src/main/java/kth/id2007/project/view/MainFrame.java" />
       </list>
     </option>
@@ -188,7 +216,7 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="-2" />
     <option name="y" value="2" />
-    <option name="width" value="1604" />
+    <option name="width" value="803" />
     <option name="height" value="899" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
@@ -987,7 +1015,7 @@
       <workItem from="1475824656941" duration="9827000" />
       <workItem from="1476104276984" duration="7719000" />
       <workItem from="1476253051133" duration="13195000" />
-      <workItem from="1476270554935" duration="2550000" />
+      <workItem from="1476270554935" duration="3274000" />
     </task>
     <servers />
   </component>
@@ -1024,10 +1052,10 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="57565000" />
+    <option name="totallyTimeSpent" value="58289000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-2" y="2" width="1604" height="899" extended-state="0" />
+    <frame x="-2" y="2" width="803" height="899" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1037,12 +1065,12 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28316328" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28316328" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18399264" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18367347" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3228498" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.664465" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32991013" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24967907" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1243,13 +1271,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/kth/id2007/project/model/RolesTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1320,13 +1341,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="14" column="54" selection-start-line="14" selection-start-column="33" selection-end-line="14" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/kth/id2007/project/model/SubTeamTask.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1339,14 +1353,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="20" column="5" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="59" column="0" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1455,29 +1461,53 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/kth/id2007/project/view/MainFrame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="236">
-          <caret line="756" column="17" selection-start-line="756" selection-start-column="17" selection-end-line="756" selection-end-column="17" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/kth/id2007/project/view/GUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="402">
-          <caret line="362" column="8" selection-start-line="362" selection-start-column="8" selection-end-line="362" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/kth/id2007/project/view/MainFrame.java.orig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="251">
           <caret line="636" column="70" selection-start-line="636" selection-start-column="70" selection-end-line="636" selection-end-column="70" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="54" selection-start-line="14" selection-start-column="33" selection-end-line="14" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="278">
+          <caret line="59" column="0" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/kth/id2007/project/view/GUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="312">
+          <caret line="356" column="29" selection-start-line="356" selection-start-column="29" selection-end-line="356" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/kth/id2007/project/view/MainFrame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="756" column="9" selection-start-line="756" selection-start-column="9" selection-end-line="756" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
