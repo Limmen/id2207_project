@@ -204,11 +204,6 @@ public class MainFrame extends JFrame {
                 revalidate();
             }
         }
-
-        private boolean access() {
-            return Arrays.stream(accessList).anyMatch(accessRole -> accessRole.equals(user.getRole()) | accessRole.equals(user.getTeam()));
-        }
-
     }
 
     //EventApplications-panel/tab
@@ -296,7 +291,7 @@ public class MainFrame extends JFrame {
             private DefaultTableModel model = new DefaultTableModel();
             private String[] columnNames = new String[]{"projectRef", "budget", "discount", "eventType", "preferences",
                     "description", "from", "to", "expected attendees", "status", "budget comments",
-            "history"};
+                    "history"};
 
             public ViewEventApplicationPanel() {
                 setLayout(new MigLayout("wrap 1"));
@@ -610,6 +605,10 @@ public class MainFrame extends JFrame {
                 Roles.SENIOR_HR_MANAGER, Roles.HR_ASSISTANT, Roles.PRODUCTION_MANAGER, Roles.SERVICE_MANAGER,
                 Roles.ADMINISTRATOR
         };
+        private String[] accessListCanResolve = new String[]{
+                Roles.SENIOR_HR_MANAGER, Roles.HR_ASSISTANT, Roles.PRODUCTION_MANAGER, Roles.SERVICE_MANAGER,
+                Roles.ADMINISTRATOR
+        };
 
         private ViewHrRequestPanel() {
             setLayout(new MigLayout("wrap 1"));
@@ -631,23 +630,24 @@ public class MainFrame extends JFrame {
             int rowsDisplayed = 15;
             scrollPane.setPreferredSize(new Dimension(dim.width, table.getRowHeight() * rowsDisplayed));
             add(scrollPane, "span 1");
+
             //Resolve Hr request button
             //Check if user can resolve a budget issue
-            if(Arrays.stream(accessListCanResolve).anyMatch(accessRole -> accessRole.equals(user.getRole()) | accessRole.equals(user.getTeam()))){
-	            
-	            JButton resolveButton = new JButton("Resolve selected");
-	            resolveButton.addActionListener(new ActionListener() {
-					
-					@Override
-					public void actionPerformed(ActionEvent arg0) {
-						if(table.getSelectedRow()>=0){
-						gui.removeHrRequest(table.getSelectedRow());					
-					}else{
-						
-					}
-						}
-				});
-	            add(resolveButton,"span 1");
+            if (Arrays.stream(accessListCanResolve).anyMatch(accessRole -> accessRole.equals(user.getRole()) | accessRole.equals(user.getTeam()))) {
+
+                JButton resolveButton = new JButton("Resolve selected");
+                resolveButton.addActionListener(new ActionListener() {
+
+                    @Override
+                    public void actionPerformed(ActionEvent arg0) {
+                        if (table.getSelectedRow() >= 0) {
+                            gui.removeHrRequest(table.getSelectedRow());
+                        } else {
+
+                        }
+                    }
+                });
+                add(resolveButton, "span 1");
             }
 
         }
@@ -672,17 +672,17 @@ public class MainFrame extends JFrame {
         }
 
     }
-    
-    
+
+
     private class BudgetIssueRequestPanel extends JPanel {
         private ViewBudgetIssuePanel viewBudgetIssuePanel;
         private CreateBudgetIssuePanel createBudgetIssuePanel;
-        
+
         private String[] accessList = new String[]{
                 Roles.FINANCIAL_MANAGER, Roles.PRODUCTION_MANAGER,
                 Roles.SERVICE_MANAGER, Roles.ADMINISTRATOR
         };
-        
+
         public BudgetIssueRequestPanel() {
             setLayout(new MigLayout("wrap 1"));
             add(new JLabel("Budget Issue Request"), "span 1, center");
@@ -712,7 +712,10 @@ public class MainFrame extends JFrame {
                     Roles.FINANCIAL_MANAGER, Roles.PRODUCTION_MANAGER,
                     Roles.SERVICE_MANAGER, Roles.ADMINISTRATOR
             };
-
+            private String[] accessListCanResolve = new String[]{
+                    Roles.SENIOR_HR_MANAGER, Roles.HR_ASSISTANT,Roles.PRODUCTION_MANAGER,Roles.SERVICE_MANAGER,
+                    Roles.ADMINISTRATOR
+            };
             private ViewBudgetIssuePanel() {
                 setLayout(new MigLayout("wrap 1"));
 
@@ -735,7 +738,23 @@ public class MainFrame extends JFrame {
                 int rowsDisplayed = 15;
                 scrollPane.setPreferredSize(new Dimension(dim.width, table.getRowHeight() * rowsDisplayed));
                 add(scrollPane, "span 1");
+                //Check if user can resolve a budget issue
+                if (Arrays.stream(accessListCanResolve).anyMatch(accessRole -> accessRole.equals(user.getRole()) | accessRole.equals(user.getTeam()))) {
 
+                    JButton resolveButton = new JButton("Resolve selected");
+                    resolveButton.addActionListener(new ActionListener() {
+
+                        @Override
+                        public void actionPerformed(ActionEvent arg0) {
+                            if (table.getSelectedRow() >= 0) {
+                                gui.removeHrRequest(table.getSelectedRow());
+                            } else {
+
+                            }
+                        }
+                    });
+                    add(resolveButton, "span 1");
+                }
 
             }
 
@@ -743,9 +762,9 @@ public class MainFrame extends JFrame {
                 ArrayList<BudgetIssueRequest> r = gui.getBudgetIssueRequests();
                 String rowData[][] = new String[r.size()][5];
                 for (int i = 0; i < r.size(); i++) {
-                    rowData[i][0] = Long.toString(r.get(i).getProjectRefrenceId());
+                    rowData[i][0] = Long.toString(r.get(i).getProjectReferenceId());
                     rowData[i][1] = Roles.getDeparments()[r.get(i).getRequestingDepartment()];
-                    rowData[i][2] = r.get(i).getProjectRefrenceId() + "";
+                    rowData[i][2] = r.get(i).getProjectReferenceId() + "";
                     rowData[i][3] = r.get(i).getAmount() + "";
                     rowData[i][4] = r.get(i).getReason();
                 }

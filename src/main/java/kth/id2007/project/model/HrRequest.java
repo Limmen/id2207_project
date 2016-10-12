@@ -13,10 +13,7 @@ public class HrRequest {
 	
 	public final static String JOB_TYPES[]={"Part time","Full time","Intern"};
 	
-		
-	public int getContractType() {
-		return contractType;
-	}
+
 	public HrRequest(long projectReferenceId, int contractType, int requestingDepartment, String jobTitle, String jobDescription) {
 		this.projectReferenceId = projectReferenceId;
 		this.contractType = contractType;

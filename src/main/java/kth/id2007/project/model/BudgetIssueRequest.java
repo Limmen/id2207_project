@@ -6,20 +6,20 @@ package kth.id2007.project.model;
  */
 public class BudgetIssueRequest {
 	private int requestingDepartment;
-	private long projectRefrenceId;
+	private long projectReferenceId;
 	private int amount;
 	private String reason;
 	
 	/**
 	 * @param requestingDepartment
-	 * @param projectRefrenceId
+	 * @param projectReferenceId
 	 * @param amount
 	 * @param reason
 	 */
-	public BudgetIssueRequest(int requestingDepartment, long projectRefrenceId, int amount, String reason) {
+	public BudgetIssueRequest(int requestingDepartment, long projectReferenceId, int amount, String reason) {
 		super();
 		this.requestingDepartment = requestingDepartment;
-		this.projectRefrenceId = projectReferenceId;
+		this.projectReferenceId = projectReferenceId;
 		this.amount = amount;
 		this.reason = reason;
 	}
@@ -39,14 +39,14 @@ public class BudgetIssueRequest {
 	/**
 	 * @return
 	 */
-	public long getProjectRefrenceId() {
-		return projectRefrenceId;
+	public long getProjectReferenceId() {
+		return projectReferenceId;
 	}
 	/**
 	 * @param projectRefrenceId
 	 */
 	public void setProjectRefrenceId(long projectRefrenceId) {
-		this.projectRefrenceId = projectRefrenceId;
+		this.projectReferenceId = projectRefrenceId;
 	}
 	/**
 	 * @return
