@@ -14,7 +14,7 @@ public class SubTeamTaskTest {
 		 int priority=9001;
 		
 		 SubTeamTask t=new SubTeamTask(projectRefrenceId, description, assignedTo, priority);
-		 assertEquals("projectRefrenceId",projectRefrenceId,t.getProjectRefrenceId());
+		 assertEquals("projectRefrenceId",projectRefrenceId,t.getProjectReferenceId());
 		 assertEquals("description",description,t.getDescription());
 		 assertEquals("assignedTo",assignedTo,t.getAssignedTo());
 		 assertEquals("priority",priority,t.getPriority());

@@ -34,7 +34,7 @@ public final class Roles {
     public static final String RESTAURANT_SERVICES_TEAM = "Restaurant services team";
     public static final String NO_TEAM = "No team";
     public static final String PRODUCTION_DEPARTMENT= "Production Department";
-    public static final String SERVICE_DEPARTMENT= "Serivce Department"; 
+    public static final String SERVICE_DEPARTMENT= "Service Department";
     
     /**
      * Returns all teams

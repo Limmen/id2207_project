@@ -6,10 +6,10 @@ public class BudgetIssueRequest {
 	private int amount;
 	private String reason;
 	
-	public BudgetIssueRequest(int requestingDepartment, long projectRefrenceId, int amount, String reason) {
+	public BudgetIssueRequest(int requestingDepartment, long projectReferenceId, int amount, String reason) {
 		super();
 		this.requestingDepartment = requestingDepartment;
-		this.projectRefrenceId = projectRefrenceId;
+		this.projectRefrenceId = projectReferenceId;
 		this.amount = amount;
 		this.reason = reason;
 	}

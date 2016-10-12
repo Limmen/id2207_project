@@ -1,21 +1,20 @@
 package kth.id2007.project.model;
 
 public class SubTeamTask {
-	private long projectRefrenceId;
+	private long projectReferenceId;
 	private String description;
 	private String assignedTo;
 	private int priority;
 	
-	public SubTeamTask(long projectRefrenceId, String description, String assignedTo, int priority) {
-		super();
-		this.projectRefrenceId = projectRefrenceId;
+	public SubTeamTask(long projectReferenceId, String description, String assignedTo, int priority) {
+		this.projectReferenceId = projectReferenceId;
 		this.description = description;
 		this.assignedTo = assignedTo;
 		this.priority = priority;
 	}
 
-	public long getProjectRefrenceId() {
-		return projectRefrenceId;
+	public long getProjectReferenceId() {
+		return projectReferenceId;
 	}
 
 	public String getDescription() {
