@@ -183,6 +183,9 @@ public class MainFrame extends JFrame {
                 int rowsDisplayed = 15;
                 scrollPane.setPreferredSize(new Dimension(dim.width, table.getRowHeight() * rowsDisplayed));
                 add(scrollPane, "span 1");
+                JButton approve = new JButton("Approve");
+                approve.addActionListener(gui.new ApproveListener(model));
+                add(approve, "span 2");
             }
 
             private void updateApplicationsModel() {
@@ -285,7 +288,8 @@ public class MainFrame extends JFrame {
         private class ViewEventApplicationPanel extends JPanel {
             private DefaultTableModel model = new DefaultTableModel();
             private String[] columnNames = new String[]{"projectRef", "budget", "discount", "eventType", "preferences",
-                    "description", "from", "to", "expected attendees", "status", "budget comments"};
+                    "description", "from", "to", "expected attendees", "status", "budget comments",
+            "history"};
 
             public ViewEventApplicationPanel() {
                 setLayout(new MigLayout("wrap 1"));
@@ -319,7 +323,7 @@ public class MainFrame extends JFrame {
 
             private void updateApplicationsModel() {
                 ArrayList<EventApplication> applications = gui.getApplications();
-                String[][] rowData = new String[applications.size()][11];
+                String[][] rowData = new String[applications.size()][12];
                 for (int i = 0; i < applications.size(); i++) {
                     EventApplication application = applications.get(i);
                     rowData[i][0] = Long.toString(application.getProjectRefrenceId());
@@ -333,6 +337,7 @@ public class MainFrame extends JFrame {
                     rowData[i][8] = Integer.toString(application.getExpectedAttendees());
                     rowData[i][9] = application.getBudgetComments();
                     rowData[i][10] = application.getStatus();
+                    rowData[i][11] = application.getHistory();
                 }
                 model.setDataVector(rowData, columnNames);
                 repaint();

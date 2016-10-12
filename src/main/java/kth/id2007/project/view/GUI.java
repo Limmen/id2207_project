@@ -259,6 +259,7 @@ public class GUI {
     class EventEditListener implements ActionListener {
         private DefaultTableModel model;
         private User user;
+
         EventEditListener(DefaultTableModel model, User user) {
             this.model = model;
             this.user = user;
@@ -278,8 +279,11 @@ public class GUI {
                 int expectedAttendees = Integer.parseInt((String) model.getValueAt(i, 8));
                 String budgetComments = (String) model.getValueAt(i, 9);
                 String status = (String) model.getValueAt(i, 10);
+
                 applications.forEach((app) -> {
                     if (app.getProjectRefrenceId() == projectReferenceId) {
+                        boolean edited = (budget != app.getBudget() ||
+                        discount != app.getDiscount());
                         app.setBudget(budget);
                         app.setDiscount(discount);
                         app.setEventType(eventType);
@@ -291,6 +295,33 @@ public class GUI {
                         app.setBudgetComments(budgetComments);
                         app.setStatus(status);
                         app.setHistory(app.getHistory() + "\n" + user.getRole() + " " + user.getUsername() + " reviewed and edited");
+                    }
+                });
+            }
+            updateGUI();
+        }
+    }
+
+    class ApproveListener implements ActionListener {
+        private DefaultTableModel model;
+
+        public ApproveListener(DefaultTableModel model) {
+            this.model = model;
+        }
+
+        /**
+         * Invoked when an action occurs.
+         *
+         * @param e
+         */
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            for (int i = 0; i < model.getRowCount(); i++) {
+                long projectReferenceId = Long.parseLong((String) model.getValueAt(i, 0));
+                boolean approved = (Boolean) model.getValueAt(i, 1);
+                applications.forEach((app) -> {
+                    if (app.getProjectRefrenceId() == projectReferenceId) {
+                        app.setApproved(approved);
                     }
                 });
             }
