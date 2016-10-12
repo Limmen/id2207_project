@@ -186,7 +186,7 @@ public class MainFrame extends JFrame {
                 scrollPane.setPreferredSize(new Dimension(dim.width, table.getRowHeight() * rowsDisplayed));
                 add(scrollPane, "span 1");
                 JButton approve = new JButton("Approve");
-                approve.addActionListener(gui.new ApproveListener(model));
+                approve.addActionListener(gui.new ApproveListener(model, user));
                 add(approve, "span 2");
             }
 
@@ -204,6 +204,7 @@ public class MainFrame extends JFrame {
                 revalidate();
             }
         }
+
     }
 
     //EventApplications-panel/tab
@@ -313,7 +314,8 @@ public class MainFrame extends JFrame {
                 table.setFillsViewportHeight(true);
                 JScrollPane scrollPane = new JScrollPane(table, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
                         JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-                Dimension dim = new Dimension(800, 400);
+                Dimension dim = new Dimension(1200, 400);
+                table.setRowHeight(30);
                 int rowsDisplayed = 15;
                 scrollPane.setPreferredSize(new Dimension(dim.width, table.getRowHeight() * rowsDisplayed));
                 add(scrollPane, "span 1");
@@ -515,7 +517,8 @@ public class MainFrame extends JFrame {
         private ViewHrRequestPanel viewHrRequestPanel;
         private String[] accessList = new String[]{
                 Roles.SENIOR_HR_MANAGER, Roles.HR_ASSISTANT,
-                Roles.ADMINISTRATOR
+                Roles.ADMINISTRATOR, Roles.PRODUCTION_MANAGER,
+                Roles.SERVICE_MANAGER
         };
 
         private HrRequestPanel() {
@@ -850,10 +853,12 @@ public class MainFrame extends JFrame {
         private SubTasksPanel() {
             setLayout(new MigLayout("wrap 1"));
             createSubTaskPanel = new CreateSubTaskPanel();
+            createSubTaskPanel.setName("createsubtasks_panel");
             if (createSubTaskPanel.access()) {
                 add(createSubTaskPanel, "span 1");
             }
             viewSubTasksPanel = new ViewSubTasksPanel();
+            viewSubTasksPanel.setName("viewsubtasks_panel");
             add(viewSubTasksPanel, "span 1");
         }
 
@@ -869,7 +874,9 @@ public class MainFrame extends JFrame {
         private class ViewSubTasksPanel extends JPanel {
             private ViewSubTasksPanel() {
                 setLayout(new MigLayout("wrap 1"));
-                add(new JLabel("Sub-team tasks"), "span 1, center");
+                JLabel lbl = new JLabel("Sub-team tasks");
+                lbl.setName("tasks_title");
+                add(lbl, "span 1, center");
                 String rowData[][] = new String[0][0];
                 model = new DefaultTableModel(rowData, columnNames) {
                     @Override
@@ -879,6 +886,7 @@ public class MainFrame extends JFrame {
                 };
                 updateSubTasksModel();
                 JTable table = new JTable(model);
+                table.setName("subtasks_table");
                 table.setPreferredScrollableViewportSize(table.getPreferredSize());
                 table.setFillsViewportHeight(true);
                 JScrollPane scrollPane = new JScrollPane(table, JScrollPane.VERTICAL_SCROLLBAR_NEVER,
@@ -886,6 +894,7 @@ public class MainFrame extends JFrame {
                 Dimension dim = new Dimension(800, 400);
                 int rowsDisplayed = 15;
                 scrollPane.setPreferredSize(new Dimension(dim.width, table.getRowHeight() * rowsDisplayed));
+                scrollPane.setName("subtasks_scrollPane");
                 add(scrollPane, "span 1");
             }
 
@@ -920,18 +929,31 @@ public class MainFrame extends JFrame {
                 setLayout(new MigLayout("wrap 2"));
                 model = new DefaultComboBoxModel();
                 projectComboBox = new JComboBox(model);
+                projectComboBox.setName("project_combobox");
                 updateProjects();
                 descriptionField = new JTextField(25);
+                descriptionField.setName("description_field");
                 assignedToField = new JTextField(25);
+                assignedToField.setName("assigned_field");
                 priorityField = new JTextField(25);
+                priorityField.setName("priority_field");
                 saveButton = new JButton("Create Sub task");
-                add(new JLabel("Project Reference"), "span 1");
+                saveButton.setName("save_button");
+                JLabel lbl = new JLabel("Project Reference");
+                lbl.setName("project_reference_label");
+                add(lbl, "span 1");
                 add(projectComboBox, "span 1");
-                add(new JLabel("Description"), "span 1");
+                lbl = new JLabel("Description");
+                lbl.setName("description_label");
+                add(lbl, "span 1");
                 add(descriptionField, "span 1");
-                add(new JLabel("Assigned to"), "span 1");
+                lbl = new JLabel("Assigned to");
+                lbl.setName("assignedto_label");
+                add(lbl, "span 1");
                 add(assignedToField, "span 1");
-                add(new JLabel("Priority"), "span 1");
+                lbl = new JLabel("Priority");
+                lbl.setName("priority_label");
+                add(lbl, "span 1");
                 add(priorityField, "span 1");
                 add(saveButton, "span 2");
                 saveButton.addActionListener(gui.new SubTeamTasksListener(descriptionField, assignedToField, priorityField, projectComboBox));

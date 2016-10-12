@@ -50,15 +50,13 @@ public class GUI {
         private final JPasswordField passwordField;
         private final JComboBox rolesList;
         private final JComboBox teamsList;
-        private StartFrame startFrame;
 
         public LoginListener(JTextField usernameField, JPasswordField passwordField, JComboBox rolesList,
-                             JComboBox teamsList, StartFrame startFrame) {
+                             JComboBox teamsList) {
             this.usernameField = usernameField;
             this.passwordField = passwordField;
             this.rolesList = rolesList;
             this.teamsList = teamsList;
-            this.startFrame = startFrame;
         }
 
         /**
@@ -72,7 +70,6 @@ public class GUI {
                         (String) rolesList.getSelectedItem(), (String) teamsList.getSelectedItem());
                 users.add(user);
                 mainFrames.add(new MainFrame(gui, user));
-                //startFrame.setVisible(false);
                 usernameField.setText("");
                 passwordField.setText("");
                 updateGUI();
@@ -283,7 +280,10 @@ public class GUI {
                 applications.forEach((app) -> {
                     if (app.getProjectRefrenceId() == projectReferenceId) {
                         boolean edited = (budget != app.getBudget() ||
-                        discount != app.getDiscount());
+                                discount != app.getDiscount() || !eventType.equals(app.getEventType()) ||
+                                !preferences.equals(app.getPreferences()) || !description.equals(app.getDescription())
+                                || !to.equals(app.getTo()) || !from.equals((app.getFrom())) || expectedAttendees != app.getExpectedAttendees()
+                                || !budgetComments.equals(budgetComments) || !status.equals(app.getStatus()));
                         app.setBudget(budget);
                         app.setDiscount(discount);
                         app.setEventType(eventType);
@@ -294,7 +294,8 @@ public class GUI {
                         app.setExpectedAttendees(expectedAttendees);
                         app.setBudgetComments(budgetComments);
                         app.setStatus(status);
-                        app.setHistory(app.getHistory() + "\n" + user.getRole() + " " + user.getUsername() + " reviewed and edited");
+                        if (edited)
+                            app.setHistory(app.getHistory() + "\n" + user.getRole() + " " + user.getUsername() + " reviewed and edited");
                     }
                 });
             }
@@ -304,9 +305,11 @@ public class GUI {
 
     class ApproveListener implements ActionListener {
         private DefaultTableModel model;
+        private User user;
 
-        public ApproveListener(DefaultTableModel model) {
+        public ApproveListener(DefaultTableModel model, User user) {
             this.model = model;
+            this.user = user;
         }
 
         /**
@@ -321,6 +324,9 @@ public class GUI {
                 boolean approved = (Boolean) model.getValueAt(i, 1);
                 applications.forEach((app) -> {
                     if (app.getProjectRefrenceId() == projectReferenceId) {
+                        if (!app.isApproved() && approved)
+                            app.setHistory(app.getHistory() + "\n" + user.getRole() + " " + user.getUsername() + " " +
+                            " approved the application");
                         app.setApproved(approved);
                     }
                 });
@@ -341,6 +347,10 @@ public class GUI {
         return applications;
     }
 
+    public void setApplications(ArrayList<EventApplication> applications) {
+        this.applications = applications;
+    }
+
     public ArrayList<HrRequest> getHrRequests() {
         return hrRequests;
     }
@@ -353,14 +363,18 @@ public class GUI {
         return tasks;
     }
 
-    public void removeBudgetIssueRequest(int n){    	
-    	budgetIssues.remove(n);
-    	updateGUI();
+    public void removeBudgetIssueRequest(int n) {
+        budgetIssues.remove(n);
+        updateGUI();
     }
 
-	public void removeHrRequest(int selectedRow) {
-		hrRequests.remove(selectedRow);
-		updateGUI();
-		
-	}
-}   
+    public void removeHrRequest(int selectedRow) {
+        hrRequests.remove(selectedRow);
+        updateGUI();
+
+    }
+
+    public void addFrame(MainFrame frame){
+        mainFrames.add(frame);
+    }
+}

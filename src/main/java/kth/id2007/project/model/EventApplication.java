@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class EventApplication {
 	//public final int EVENT_TYPE_=1,
-	private static long staticRefrenceCounter=0;
+	public static long staticReferenceCounter =0;
 	private long projectRefrenceId;
 	private long budget;
 	private int discount = 0;
@@ -46,7 +46,7 @@ public class EventApplication {
 		this.budgetComments = budgetComments;
 		this.status = status;
 		this.history = history;
-		projectRefrenceId=staticRefrenceCounter++;
+		projectRefrenceId= staticReferenceCounter++;
 		
 	}
 	

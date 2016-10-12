@@ -12,7 +12,7 @@ public class StartFrame extends JFrame
 {
 	private GUI gui;
 
-	private final boolean DEBUG=true;
+	private final boolean DEBUG=false;
 	/**
 	 * Class constructor. Initializes the frame.
 	 *
@@ -32,7 +32,7 @@ public class StartFrame extends JFrame
 		teamsList.setName("teams_list");
 		JButton loginButton=new JButton("Log in");
 		loginButton.setName("login_button");
-		loginButton.addActionListener(gui. new LoginListener(userNameField, passwordField, rolesList, teamsList, this));
+		loginButton.addActionListener(gui. new LoginListener(userNameField, passwordField, rolesList, teamsList));
 
 		JLabel lbl = new JLabel("Login");
 		lbl.setName("login_title");

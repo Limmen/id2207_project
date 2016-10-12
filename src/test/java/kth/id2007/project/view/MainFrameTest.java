@@ -30,7 +30,7 @@ public class MainFrameTest {
         mainFrame = new FrameFixture(new MainFrame(new GUI(), new User(username, pw, Roles.ADMINISTRATOR, Roles.NO_TEAM)));
         mainFrame.requireVisible();
         mainFrame.tabbedPane("container_pane").requireVisible();
-        mainFrame.tabbedPane("container_pane").requireTabTitles("Home", "Event Applications", "Clients", "Employees");
+        mainFrame.tabbedPane("container_pane").requireTabTitles("Home", "Event Applications", "Clients", "Employees", "HR Request", "Budget Issue", "Sub-team Tasks");
         mainFrame.tabbedPane("container_pane").selectTab("Home");
         mainFrame.label("home_title").requireText("Home");
         mainFrame.label("user_label").requireText("User:");

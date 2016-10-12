@@ -43,13 +43,13 @@ public class LoginAcceptanceTest {
                 user.getUsername().equals(username) &&
                         user.getRole().equals(Roles.EMPLOYEE) &&
         user.getTeam().equals(Roles.COOKING_TEAM)));
-        login.requireNotVisible();
+        login.requireVisible();
         login.robot.cleanUpWithoutDisposingWindows();
         Robot robot = BasicRobot.robotWithCurrentAwtHierarchy();
         FrameFixture mainFrame = WindowFinder.findFrame("main_frame").using(robot);
         mainFrame.requireVisible();
         mainFrame.tabbedPane("container_pane").requireVisible();
-        mainFrame.tabbedPane("container_pane").requireTabTitles("Home", "Event Applications");
+        mainFrame.tabbedPane("container_pane").requireTabTitles("Home", "Event Applications", "Sub-team Tasks");
         mainFrame.tabbedPane("container_pane").selectTab("Home");
         mainFrame.label("home_title").requireText("Home");
         mainFrame.label("user_label").requireText("User:");

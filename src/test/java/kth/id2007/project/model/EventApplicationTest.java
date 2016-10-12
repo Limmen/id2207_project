@@ -10,7 +10,7 @@ public class EventApplicationTest {
 
     @Test
     public void createEventApplicationTest() {
-
+        long startReference = EventApplication.staticReferenceCounter;
         long budget = 1232342134;
         int discount = 123;
         String eventType = "Birthday party";
@@ -56,16 +56,13 @@ public class EventApplicationTest {
             assertEquals("Subteam itteration " + i, subteams.get(i), tasks.get(i));
         }
 
-
         //Id counter test
-        assertEquals("id fail @ itteration " + 0, 0, ev.getProjectRefrenceId());
-        for (int i = 1; i < 100; i++) {
+        assertEquals("id fail @ itteration " + 0, startReference, ev.getProjectRefrenceId());
+        for (int i = (int) startReference + 1; i < 100; i++) {
 
             assertEquals("id fail @ itteration " + i, i, (new EventApplication(budget, discount,
                     eventType, preferences, description, from, to,
                     expectedAttendees, budgetComments, status, history)).getProjectRefrenceId());
         }
-
-
     }
 }

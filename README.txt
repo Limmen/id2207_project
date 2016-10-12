@@ -20,5 +20,6 @@ To run tests: mvn test
 
 To run the program: java -jar target/sep_system-1.0-SNAPSHOT-jar-with-dependencies.jar
 
+To generate new fat-jar: mvn clean compile assembly:single
 
 
