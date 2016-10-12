@@ -80,6 +80,15 @@ public class GUI {
          */
         public void actionPerformed(ActionEvent e) {
             if (usernameField.getText().length() > 0 && passwordField.getPassword().length > 0) {
+<<<<<<< HEAD
+                User user = new User(usernameField.getText(), new String(passwordField.getPassword()),
+                        (String) rolesList.getSelectedItem(), (String) teamsList.getSelectedItem());
+                users.add(user);
+                mainFrames.add(new MainFrame(gui, user));
+                usernameField.setText("");
+                passwordField.setText("");
+                updateGUI();
+=======
             	
             	boolean userExists=true;
             	for(User u:users)
@@ -97,9 +106,12 @@ public class GUI {
             	}else{
             		errorMessage("User \""+usernameField.getText()+"\" alredy exists!");
             	}
+>>>>>>> 365f1981adbb2a0be72e03044f1d192fb3e81fe0
             } else invalidInput("");
 
         }
+
+
     }
 
 
@@ -256,6 +268,10 @@ public class GUI {
             }
         
         }
+
+	
+
+        
 
     }
 
