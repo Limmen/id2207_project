@@ -9,6 +9,7 @@ public class HrRequest {
 	private int requestingDepartment;
 	private String jobTitle;
 	private String jobDescription;
+<<<<<<< HEAD
 	private long projectReferenceId;
 	
 	public final static String JOB_TYPES[]={"Part time","Full time","Intern"};
@@ -19,6 +20,18 @@ public class HrRequest {
 	}
 	public HrRequest(long projectReferenceId, int contractType, int requestingDepartment, String jobTitle, String jobDescription) {
 		this.projectReferenceId = projectReferenceId;
+=======
+	public final static String JOB_TYPES[]={"Part time","Full time","Intern"};
+	
+	/**
+	 * @param contractType
+	 * @param requestingDepartment
+	 * @param jobTitle
+	 * @param jobDescription
+	 */
+	public HrRequest(int contractType, int requestingDepartment, String jobTitle, String jobDescription) {
+		super();
+>>>>>>> b459131d8661e6956761365211014911a27fb01c
 		this.contractType = contractType;
 		this.requestingDepartment = requestingDepartment;
 		this.jobTitle = jobTitle;

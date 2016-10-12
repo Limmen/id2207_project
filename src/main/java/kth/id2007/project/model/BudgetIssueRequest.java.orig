@@ -10,6 +10,9 @@ public class BudgetIssueRequest {
 	private int amount;
 	private String reason;
 	
+<<<<<<< HEAD
+	public BudgetIssueRequest(int requestingDepartment, long projectReferenceId, int amount, String reason) {
+=======
 	/**
 	 * @param requestingDepartment
 	 * @param projectRefrenceId
@@ -17,6 +20,7 @@ public class BudgetIssueRequest {
 	 * @param reason
 	 */
 	public BudgetIssueRequest(int requestingDepartment, long projectRefrenceId, int amount, String reason) {
+>>>>>>> b459131d8661e6956761365211014911a27fb01c
 		super();
 		this.requestingDepartment = requestingDepartment;
 		this.projectRefrenceId = projectReferenceId;

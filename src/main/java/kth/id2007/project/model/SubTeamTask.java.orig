@@ -6,15 +6,35 @@ public class SubTeamTask {
 	private String assignedTo;
 	private int priority;
 	
+<<<<<<< HEAD
 	public SubTeamTask(long projectReferenceId, String description, String assignedTo, int priority) {
 		this.projectReferenceId = projectReferenceId;
+=======
+	/**
+	 * @param projectRefrenceId
+	 * @param description
+	 * @param assignedTo
+	 * @param priority
+	 */
+	public SubTeamTask(long projectRefrenceId, String description, String assignedTo, int priority) {
+		super();
+		this.projectRefrenceId = projectRefrenceId;
+>>>>>>> b459131d8661e6956761365211014911a27fb01c
 		this.description = description;
 		this.assignedTo = assignedTo;
 		this.priority = priority;
 	}
 
+<<<<<<< HEAD
 	public long getProjectReferenceId() {
 		return projectReferenceId;
+=======
+	/**
+	 * @return
+	 */
+	public long getProjectRefrenceId() {
+		return projectRefrenceId;
+>>>>>>> b459131d8661e6956761365211014911a27fb01c
 	}
 
 	/**

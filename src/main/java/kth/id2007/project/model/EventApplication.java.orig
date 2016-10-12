@@ -113,6 +113,7 @@ public class EventApplication {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+<<<<<<< HEAD
 	public String getFrom() {
 		return from;
 	}
@@ -123,6 +124,30 @@ public class EventApplication {
 		return to;
 	}
 	public void setTo(String to) {
+=======
+	/**
+	 * @return
+	 */
+	public Date getFrom() {
+		return from;
+	}
+	/**
+	 * @param from
+	 */
+	public void setFrom(Date from) {
+		this.from = from;
+	}
+	/**
+	 * @return
+	 */
+	public Date getTo() {
+		return to;
+	}
+	/**
+	 * @param to
+	 */
+	public void setTo(Date to) {
+>>>>>>> b459131d8661e6956761365211014911a27fb01c
 		this.to = to;
 	}
 	/**
