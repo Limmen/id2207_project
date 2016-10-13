@@ -2,10 +2,10 @@ package kth.id2007.project.model;
 
 import java.util.Date;
 
-/**Class for holding information about a client
+/**
+ * Class for holding information about a client
  * 
  * @author mg
- *
  */
 public class ClientRecord {
 	private String clientName;
@@ -14,7 +14,9 @@ public class ClientRecord {
 	private String history;
 	private Date creationDate;
 	
-	/**Creates a client
+	/**
+	 * Class constructor. Initializes a new ClientRecord
+	 *
 	 * @param clientName
 	 * @param clientEmail
 	 * @param clientPhoneNumber
@@ -30,61 +32,90 @@ public class ClientRecord {
 	}
 	
 	/**
-	 * @return
+	 * getClientName
+	 *
+	 * @return name of the client
 	 */
 	public String getClientName() {
 		return clientName;
 	}
+
 	/**
-	 * @param clientName
+	 * Updates the name of the client
+	 *
+	 * @param clientName new name of the client
 	 */
 	public void setClientName(String clientName) {
 		this.clientName = clientName;
 	}
+
 	/**
-	 * @return
+	 * getClientEmail
+	 *
+	 * @return email of the client
 	 */
 	public String getClientEmail() {
 		return clientEmail;
 	}
+
 	/**
-	 * @param clientEmail
+	 * Updates the email of the client
+	 *
+	 * @param clientEmail new email of the client
 	 */
 	public void setClientEmail(String clientEmail) {
 		this.clientEmail = clientEmail;
 	}
+
 	/**
-	 * @return
+	 * getClientPhoneNumber
+	 *
+	 * @return phone number of the client
 	 */
 	public String getClientPhoneNumber() {
 		return clientPhoneNumber;
 	}
+
 	/**
-	 * @param clientPhoneNumber
+	 * Updates the phone number of the client
+	 *
+	 * @param clientPhoneNumber new phone number of the client
 	 */
 	public void setClientPhoneNumber(String clientPhoneNumber) {
 		this.clientPhoneNumber = clientPhoneNumber;
 	}
+
 	/**
-	 * @return
+	 * getClientHistory
+	 *
+	 * @return client history
 	 */
 	public String getClientHistory() {
 		return history;
 	}
+
 	/**
-	 * @param history
+	 * Updates the history of the client
+	 *
+	 * @param history new history of the client
 	 */
 	public void setClientHistory(String history) {
 		this.history = history;
 	}
+
 	/**
-	 * @return
+	 * getCreationDate
+	 *
+	 * @return creationDate of the client-record
 	 */
 	public Date getCreationDate() {
 		return creationDate;
 	}
+
 	/**
-	 * @param creationDate
+	 * Updates the creationDate of the client
+	 *
+	 * @param creationDate new creationDate
 	 */
 	public void setCreationDate(Date creationDate) {
 		this.creationDate = creationDate;

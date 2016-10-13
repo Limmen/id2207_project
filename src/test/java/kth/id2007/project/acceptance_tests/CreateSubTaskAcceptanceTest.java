@@ -21,6 +21,7 @@ public class CreateSubTaskAcceptanceTest {
 
     @Test
     public void CreateSubTaskAcceptanceTest() {
+        long id = EventApplication.staticReferenceCounter;
         String username = "Jack";
         String pw = "testPw";
         EventApplication event = new EventApplication(1, 1, "type", "pref", "descr", "from", "to",
@@ -61,7 +62,7 @@ public class CreateSubTaskAcceptanceTest {
         JTableCellFixture cell2 = mainFrame.table("subtasks_table").cell(TableCell.row(0).column(1));
         JTableCellFixture cell3 = mainFrame.table("subtasks_table").cell(TableCell.row(0).column(2));
         JTableCellFixture cell4 = mainFrame.table("subtasks_table").cell(TableCell.row(0).column(3));
-        cell1.requireValue("0");
+        cell1.requireValue(Integer.toString((int) id));
         cell2.requireValue("Prepare a playlist");
         cell3.requireValue("Audio Team");
         cell4.requireValue("10");

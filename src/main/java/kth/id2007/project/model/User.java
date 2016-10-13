@@ -29,6 +29,7 @@ public class User {
 
     /**
      * getPassword
+     *
      * @return password of the user
      */
     public String getPassword() {

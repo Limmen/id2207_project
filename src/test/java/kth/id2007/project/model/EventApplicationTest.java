@@ -6,8 +6,14 @@ import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
 
+/**
+ * Test-suite for the  EventApplication class
+ */
 public class EventApplicationTest {
 
+    /**
+     * Tests initialization of a new EventApplication
+     */
     @Test
     public void createEventApplicationTest() {
         long startReference = EventApplication.staticReferenceCounter;

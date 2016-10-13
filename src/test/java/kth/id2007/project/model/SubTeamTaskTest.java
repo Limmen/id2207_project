@@ -1,11 +1,17 @@
 package kth.id2007.project.model;
 
-import static org.junit.Assert.*;
-
 import org.junit.Test;
 
+import static org.junit.Assert.assertEquals;
+
+/**
+ * Test-suite for SubTeamTask class
+ */
 public class SubTeamTaskTest {
 
+    /**
+     * Test for initialization of a SubTeamTask
+     */
 	@Test
 	public void createSubTeamTask(){
 		 long projectRefrenceId=23412324;

@@ -46,7 +46,7 @@ public class MainFrame extends JFrame {
         pack();
         setLocationRelativeTo(null); //center on screen
         setVisible(true);
-        
+
     }
 
     public void update() {
@@ -110,6 +110,7 @@ public class MainFrame extends JFrame {
         String[] accessList = Roles.roles();
         ApproveApplicationsPanel approveApplicationsPanel;
         private JButton logoutButton;
+
         private HomePanel() {
             setLayout(new MigLayout("wrap 2"));
             JLabel lbl = new JLabel("Home");
@@ -133,18 +134,19 @@ public class MainFrame extends JFrame {
             lbl = new JLabel(user.getTeam());
             lbl.setName("team");
             add(lbl, "span 1");
-            logoutButton=new JButton("Logout");
-            add(logoutButton,"span 2");
+            logoutButton = new JButton("Logout");
+            add(logoutButton, "span 2");
             approveApplicationsPanel = new ApproveApplicationsPanel();
-            add(approveApplicationsPanel, "span 2");
-            
+            if (approveApplicationsPanel.access())
+                add(approveApplicationsPanel, "span 2");
+
             logoutButton.addActionListener(new ActionListener() {
-				
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					dispose();
-				}
-			});
+
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    dispose();
+                }
+            });
 
         }
 
@@ -160,6 +162,9 @@ public class MainFrame extends JFrame {
             private DefaultTableModel model = new DefaultTableModel();
             private Object[] columnNames = new String[]{"projectRef", "approve"};
             private JTable table;
+            private String[] accessList = new String[]{
+                    Roles.ADMINISTRATOR, Roles.ADMINISTRATION_MANAGER
+            };
 
             private ApproveApplicationsPanel() {
                 setLayout(new MigLayout("wrap 1"));
@@ -214,6 +219,10 @@ public class MainFrame extends JFrame {
                 model.setDataVector(rowData, columnNames);
                 repaint();
                 revalidate();
+            }
+
+            private boolean access() {
+                return Arrays.stream(accessList).anyMatch(accessRole -> accessRole.equals(user.getRole()) | accessRole.equals(user.getTeam()));
             }
         }
 
@@ -659,9 +668,9 @@ public class MainFrame extends JFrame {
                             gui.removeHrRequest(table.getSelectedRow());
                         } else {
                             SwingUtilities.invokeLater(() ->
-                            JOptionPane.showMessageDialog(null, "Please select a row to resolve!",
-                                    "Error", JOptionPane.INFORMATION_MESSAGE)
-                            		);
+                                    JOptionPane.showMessageDialog(null, "Please select a row to resolve!",
+                                            "Error", JOptionPane.INFORMATION_MESSAGE)
+                            );
                         }
                     }
                 });
@@ -730,9 +739,10 @@ public class MainFrame extends JFrame {
                     Roles.SERVICE_MANAGER, Roles.ADMINISTRATOR
             };
             private String[] accessListCanResolve = new String[]{
-                    Roles.SENIOR_HR_MANAGER, Roles.HR_ASSISTANT,Roles.PRODUCTION_MANAGER,Roles.SERVICE_MANAGER,
+                    Roles.SENIOR_HR_MANAGER, Roles.HR_ASSISTANT, Roles.PRODUCTION_MANAGER, Roles.SERVICE_MANAGER,
                     Roles.ADMINISTRATOR
             };
+
             private ViewBudgetIssuePanel() {
                 setLayout(new MigLayout("wrap 1"));
 
@@ -767,9 +777,9 @@ public class MainFrame extends JFrame {
                                 gui.removeBudgetIssueRequest(table.getSelectedRow());
                             } else {
                                 SwingUtilities.invokeLater(() ->
-                                JOptionPane.showMessageDialog(null, "Please select a row to resolve!",
-                                        "Error", JOptionPane.INFORMATION_MESSAGE)
-                                		);
+                                        JOptionPane.showMessageDialog(null, "Please select a row to resolve!",
+                                                "Error", JOptionPane.INFORMATION_MESSAGE)
+                                );
                             }
                         }
                     });
@@ -859,8 +869,7 @@ public class MainFrame extends JFrame {
         private DefaultTableModel model;
         private String[] columnNames = new String[]{"Project-ref", "Description", "Assigned To", "Priority"};
         private String[] accessList = new String[]{
-                Roles.SENIOR_CUSTOMER_SERVICE_OFFICER,
-                Roles.FINANCIAL_MANAGER, Roles.ADMINISTRATION_MANAGER, Roles.PRODUCTION_MANAGER, Roles.SERVICE_MANAGER,
+                Roles.PRODUCTION_MANAGER, Roles.SERVICE_MANAGER,
                 Roles.PHOTOGRAPHER_TEAM, Roles.AUDIO_TEAM, Roles.GRAPHIC_TEAM, Roles.IT_TEAM, Roles.DECORATING_TEAM,
                 Roles.COOKING_TEAM, Roles.RESTAURANT_SERVICES_TEAM, Roles.ADMINISTRATOR
         };

@@ -4,7 +4,14 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
+/**
+ * Test-suite for the HrRequest Class
+ */
 public class HrRequestTest {
+
+    /**
+     * Tests initialization of a new HrRequest
+     */
     @Test
     public void createHrRequestTest() {
         int projectReferenceId = 1;

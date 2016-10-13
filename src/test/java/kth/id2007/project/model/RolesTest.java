@@ -59,4 +59,13 @@ public class RolesTest {
         };
         assertArrayEquals("Should return all service department teams", servTeams, Roles.servDepTeams());
     }
+
+    /**
+     * Test for getDepartments method
+     */
+    @Test
+    public void getDepartments(){
+        String[] departments = new String[]{SERVICE_DEPARTMENT,PRODUCTION_DEPARTMENT};
+        assertArrayEquals("Should return all departments", departments, Roles.getDeparments());
+    }
 }

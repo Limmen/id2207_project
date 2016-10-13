@@ -19,7 +19,7 @@ public final class Roles {
     public static final String ADMINISTRATION_MANAGER = "Administration Manager";
     public static final String PRODUCTION_MANAGER = "Production Manager";
     public static final String SERVICE_MANAGER = "Service Manager";
-    public static final String VICE_PRESIDENT = "Vice Presideint";
+    public static final String VICE_PRESIDENT = "Vice President";
     public static final String EMPLOYEE = "Employee";
     public static final String ADMINISTRATOR = "Administrator";
     /**
@@ -33,12 +33,16 @@ public final class Roles {
     public static final String COOKING_TEAM = "Cooking team";
     public static final String RESTAURANT_SERVICES_TEAM = "Restaurant services team";
     public static final String NO_TEAM = "No team";
+    /**
+     * Departments
+     */
     public static final String PRODUCTION_DEPARTMENT= "Production Department";
     public static final String SERVICE_DEPARTMENT= "Service Department";
     
     /**
-     * Returns all teams
-     * @return
+     * Returns all departments
+     *
+     * @return array of departments
      */
     public static  String[] getDeparments(){
     	return new String[]{SERVICE_DEPARTMENT,PRODUCTION_DEPARTMENT};

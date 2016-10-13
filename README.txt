@@ -1,4 +1,8 @@
+Requires java version > 1.8
+
 You can either import the project as a maven-project into any Java IDE and run/compile/build from inside the IDE or use the command-line.
+
+To use the command-line you need maven installed on you computer.
 
 Command-line options:
 

@@ -1,8 +1,9 @@
 package kth.id2007.project.model;
 
 /**
- * @author mg
+ * Class representing a HrRequest
  *
+ * @author mg
  */
 public class HrRequest {
 	private int contractType;
