@@ -63,12 +63,12 @@ public class EventApplicationTest {
         }
 
         //Id counter test
-        assertEquals("id fail @ itteration " + 0, startReference, ev.getProjectRefrenceId());
+        assertEquals("id fail @ itteration " + 0, startReference, ev.getProjectReferenceId());
         for (int i = (int) startReference + 1; i < 100; i++) {
 
             assertEquals("id fail @ itteration " + i, i, (new EventApplication(budget, discount,
                     eventType, preferences, description, from, to,
-                    expectedAttendees, budgetComments, status, history)).getProjectRefrenceId());
+                    expectedAttendees, budgetComments, status, history)).getProjectReferenceId());
         }
     }
 }

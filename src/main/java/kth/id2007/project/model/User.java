@@ -13,7 +13,7 @@ public class User {
     private String team;
 
     /**
-     * Class constructor
+     * Class constructor. Initializes class attributes
      *
      * @param username username of the user
      * @param password password of the user

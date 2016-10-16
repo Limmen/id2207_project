@@ -11,8 +11,8 @@ import javax.swing.*;
 public class StartFrame extends JFrame
 {
 	private GUI gui;
-
 	private final boolean DEBUG=false;
+
 	/**
 	 * Class constructor. Initializes the frame.
 	 *

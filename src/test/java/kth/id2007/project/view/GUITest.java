@@ -2,8 +2,6 @@ package kth.id2007.project.view;
 
 import kth.id2007.project.model.*;
 import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -27,16 +25,6 @@ public class GUITest {
     @Mock
     private GUI instance = new GUI();
 
-
-    @Before
-    public void setUp() throws Exception {
-
-    }
-
-    @After
-    public void tearDown() throws Exception {
-
-    }
 
     /**
      * Test for removeBudgetIssueRequest method
@@ -195,7 +183,7 @@ public class GUITest {
     @Test
     public void budgetIssueListener() {
         EventApplication eventApplication = Mockito.mock(EventApplication.class);
-        Mockito.when(eventApplication.getProjectRefrenceId()).thenReturn(Long.parseLong("0"));
+        Mockito.when(eventApplication.getProjectReferenceId()).thenReturn(Long.parseLong("0"));
         ArrayList<EventApplication> applications = new ArrayList();
         applications.add(eventApplication);
         Whitebox.setInternalState(instance, "applications", applications);

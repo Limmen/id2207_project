@@ -91,7 +91,6 @@ public class GUI {
                             (String) rolesList.getSelectedItem(), (String) teamsList.getSelectedItem());
                     users.add(user);
                     mainFrames.add(new MainFrame(gui, user));
-                    //startFrame.setVisible(false);
                     usernameField.setText("");
                     passwordField.setText("");
                     updateGUI();
@@ -278,7 +277,7 @@ public class GUI {
                 try {
                     long projects[] = new long[gui.getApplications().size()];
                     for (int i = 0; i < gui.getApplications().size(); i++) {
-                        projects[i] = gui.getApplications().get(i).getProjectRefrenceId();
+                        projects[i] = gui.getApplications().get(i).getProjectReferenceId();
                     }
 
                     BudgetIssueRequest b = new BudgetIssueRequest(requestingDepartmentComboBox.getSelectedIndex(),
@@ -393,7 +392,7 @@ public class GUI {
                 String budgetComments = (String) model.getValueAt(i, 9);
                 String status = (String) model.getValueAt(i, 10);
                 applications.forEach((app) -> {
-                    if (app.getProjectRefrenceId() == projectReferenceId) {
+                    if (app.getProjectReferenceId() == projectReferenceId) {
                         boolean edited = (budget != app.getBudget() ||
                                 discount != app.getDiscount() || !eventType.equals(app.getEventType()) ||
                                 !preferences.equals(app.getPreferences()) || !description.equals(app.getDescription())
@@ -434,7 +433,7 @@ public class GUI {
                 long projectReferenceId = Long.parseLong((String) model.getValueAt(i, 0));
                 boolean approved = (Boolean) model.getValueAt(i, 1);
                 applications.forEach((app) -> {
-                    if (app.getProjectRefrenceId() == projectReferenceId) {
+                    if (app.getProjectReferenceId() == projectReferenceId) {
                         if (!app.isApproved() && approved)
                             app.setHistory(app.getHistory() + "\n" + user.getRole() + " " + user.getUsername() + " " +
                                     " approved the application");

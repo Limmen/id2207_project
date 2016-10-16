@@ -17,12 +17,18 @@ public class StartFrameTest {
     private GUI gui;
     private FrameFixture startFrame;
 
+    /**
+     * Ran before each test
+     */
     @Before
-    public void setUp() throws Exception {
+    public void setUp(){
         gui = new GUI();
         startFrame = new FrameFixture(new StartFrame(gui));
     }
 
+    /**
+     * Ran after each test
+     */
     @After
     public void cleanUp() {
         startFrame.cleanUp();

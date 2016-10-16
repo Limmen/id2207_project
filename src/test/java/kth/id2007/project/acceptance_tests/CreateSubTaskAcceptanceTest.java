@@ -13,12 +13,17 @@ import org.junit.Test;
 import java.util.ArrayList;
 
 /**
+ * Acceptance test for CREATE_SUBTASK user story
+ *
  * Created by kim on 2016-10-12.
  */
 public class CreateSubTaskAcceptanceTest {
     private GUI gui;
     private FrameFixture mainFrame;
 
+    /**
+     * Acceptance test for creating a subtask
+     */
     @Test
     public void CreateSubTaskAcceptanceTest() {
         long id = EventApplication.staticReferenceCounter;

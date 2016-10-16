@@ -48,14 +48,15 @@ public class MainFrame extends JFrame {
         setVisible(true);
 
     }
-
-    public void update() {
+    /**
+     * Updates the frame
+     */
+    void update() {
         SwingUtilities.invokeLater(() ->
         {
             container.update();
         });
     }
-
     //Container that holds tabs
     private class Container extends JTabbedPane {
         private HomePanel homePanel;
@@ -66,7 +67,7 @@ public class MainFrame extends JFrame {
         private BudgetIssueRequestPanel budgetIssueRequestPanel;
         private SubTasksPanel subTasksPanel;
 
-        public Container() {
+        private Container() {
             homePanel = new HomePanel();
             if (homePanel.access())
                 addTab("Home", homePanel);
@@ -91,10 +92,8 @@ public class MainFrame extends JFrame {
             if (subTasksPanel.access()) {
                 addTab("Sub-team Tasks", subTasksPanel);
             }
-
         }
-
-        public void update() {
+        private void update() {
             clientsPanel.update();
             employeesPanel.update();
             eventApplicationsPanel.update();
@@ -140,14 +139,7 @@ public class MainFrame extends JFrame {
             if (approveApplicationsPanel.access())
                 add(approveApplicationsPanel, "span 2");
 
-            logoutButton.addActionListener(new ActionListener() {
-
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    dispose();
-                }
-            });
-
+            logoutButton.addActionListener((ActionEvent e) -> dispose());
         }
 
         void update() {
@@ -213,14 +205,13 @@ public class MainFrame extends JFrame {
                 Object[][] rowData = new Object[applications.size()][2];
                 for (int i = 0; i < applications.size(); i++) {
                     EventApplication application = applications.get(i);
-                    rowData[i][0] = Long.toString(application.getProjectRefrenceId());
+                    rowData[i][0] = Long.toString(application.getProjectReferenceId());
                     rowData[i][1] = false;
                 }
                 model.setDataVector(rowData, columnNames);
                 repaint();
                 revalidate();
             }
-
             private boolean access() {
                 return Arrays.stream(accessList).anyMatch(accessRole -> accessRole.equals(user.getRole()) | accessRole.equals(user.getTeam()));
             }
@@ -260,7 +251,7 @@ public class MainFrame extends JFrame {
                     Roles.SENIOR_CUSTOMER_SERVICE_OFFICER, Roles.ADMINISTRATOR
             };
 
-            public CreateEventApplicationPanel() {
+            private CreateEventApplicationPanel() {
                 setLayout(new MigLayout("wrap 2"));
                 add(new JLabel("Create Event Application"), "span 2, center");
                 JTextField budgetField = new JTextField(25);
@@ -315,7 +306,7 @@ public class MainFrame extends JFrame {
                     "description", "from", "to", "expected attendees", "status", "budget comments",
                     "history"};
 
-            public ViewEventApplicationPanel() {
+            private ViewEventApplicationPanel() {
                 setLayout(new MigLayout("wrap 1"));
                 add(new JLabel("Event Applications"), "span 1, center");
                 String rowData[][] = new String[0][0];
@@ -351,7 +342,7 @@ public class MainFrame extends JFrame {
                 String[][] rowData = new String[applications.size()][12];
                 for (int i = 0; i < applications.size(); i++) {
                     EventApplication application = applications.get(i);
-                    rowData[i][0] = Long.toString(application.getProjectRefrenceId());
+                    rowData[i][0] = Long.toString(application.getProjectReferenceId());
                     rowData[i][1] = Long.toString(application.getBudget());
                     rowData[i][2] = Long.toString(application.getDiscount());
                     rowData[i][3] = application.getEventType();
@@ -438,7 +429,7 @@ public class MainFrame extends JFrame {
             private DefaultTableModel model;
             private String[] columnNames = new String[]{"name", "email", "phonenumber", "created"};
 
-            public ViewClientsPanel() {
+            private ViewClientsPanel() {
                 setLayout(new MigLayout("wrap 1"));
                 add(new JLabel("Clients"), "span 1, center");
                 String rowData[][] = new String[0][0];
@@ -607,7 +598,7 @@ public class MainFrame extends JFrame {
             private void updateProjects() {
                 String projects[] = new String[gui.getApplications().size()];
                 for (int i = 0; i < gui.getApplications().size(); i++) {
-                    projects[i] = "" + gui.getApplications().get(i).getProjectRefrenceId();
+                    projects[i] = "" + gui.getApplications().get(i).getProjectReferenceId();
                 }
                 projectComboBox.setModel(new DefaultComboBoxModel(projects));
                 repaint();
@@ -802,12 +793,9 @@ public class MainFrame extends JFrame {
                 repaint();
                 revalidate();
             }
-
             private boolean access() {
                 return Arrays.stream(accessList).anyMatch(accessRole -> accessRole.equals(user.getRole()) | accessRole.equals(user.getTeam()));
             }
-
-
         }
 
         private class CreateBudgetIssuePanel extends JPanel {
@@ -820,7 +808,6 @@ public class MainFrame extends JFrame {
                     Roles.PRODUCTION_MANAGER,
                     Roles.SERVICE_MANAGER, Roles.ADMINISTRATOR
             };
-
             private CreateBudgetIssuePanel() {
                 setLayout(new MigLayout("wrap 2"));
                 requestingDepartmentComboBox = new JComboBox(Roles.getDeparments());
@@ -846,7 +833,7 @@ public class MainFrame extends JFrame {
             private void updateProjects() {
                 String projects[] = new String[gui.getApplications().size()];
                 for (int i = 0; i < gui.getApplications().size(); i++) {
-                    projects[i] = "" + gui.getApplications().get(i).getProjectRefrenceId();
+                    projects[i] = "" + gui.getApplications().get(i).getProjectReferenceId();
                 }
                 projectComboBox.setModel(new DefaultComboBoxModel(projects));
                 repaint();
@@ -856,10 +843,7 @@ public class MainFrame extends JFrame {
             private boolean access() {
                 return Arrays.stream(accessList).anyMatch(accessRole -> accessRole.equals(user.getRole()) | accessRole.equals(user.getTeam()));
             }
-
         }
-
-
         private boolean access() {
             return Arrays.stream(accessList).anyMatch(accessRole -> accessRole.equals(user.getRole()) | accessRole.equals(user.getTeam()));
         }
@@ -892,11 +876,9 @@ public class MainFrame extends JFrame {
             viewSubTasksPanel.updateSubTasksModel();
             createSubTaskPanel.updateProjects();
         }
-
         private boolean access() {
             return Arrays.stream(accessList).anyMatch(accessRole -> accessRole.equals(user.getRole()) | accessRole.equals(user.getTeam()));
         }
-
         private class ViewSubTasksPanel extends JPanel {
             private ViewSubTasksPanel() {
                 setLayout(new MigLayout("wrap 1"));
@@ -984,11 +966,10 @@ public class MainFrame extends JFrame {
                 add(saveButton, "span 2");
                 saveButton.addActionListener(gui.new SubTeamTasksListener(descriptionField, assignedToField, priorityField, projectComboBox));
             }
-
             private void updateProjects() {
                 String projects[] = new String[gui.getApplications().size()];
                 for (int i = 0; i < gui.getApplications().size(); i++) {
-                    projects[i] = "" + gui.getApplications().get(i).getProjectRefrenceId();
+                    projects[i] = "" + gui.getApplications().get(i).getProjectReferenceId();
                 }
                 projectComboBox.setModel(new DefaultComboBoxModel(projects));
                 repaint();
@@ -998,9 +979,7 @@ public class MainFrame extends JFrame {
             private boolean access() {
                 return Arrays.stream(accessList).anyMatch(accessRole -> accessRole.equals(user.getRole()) | accessRole.equals(user.getTeam()));
             }
-
         }
     }
-
 }
 

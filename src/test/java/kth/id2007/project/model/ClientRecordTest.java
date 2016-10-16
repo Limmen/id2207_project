@@ -7,7 +7,14 @@ import java.util.Date;
 
 import static org.junit.Assert.assertEquals;
 
+/**
+ * Test suite for ClientRecord class
+ */
 public class ClientRecordTest {
+
+    /**
+     * Test for ClientRecord initialization
+     */
 	@Test
     public void createClientRecordTest(){
         String name = "Alice";
