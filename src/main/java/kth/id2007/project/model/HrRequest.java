@@ -3,7 +3,7 @@ package kth.id2007.project.model;
 /**
  * Class representing a HrRequest
  *
- * @author mg
+ * 
  */
 public class HrRequest {
 	private int contractType;
@@ -23,60 +23,66 @@ public class HrRequest {
 		this.jobDescription = jobDescription;
 	}
 	
-	/**
-	 * @return
+	/** Returns the contract type
+	 * @return contract type
 	 */
 	public int getContractType() {
 		return contractType;
 	}
 	
 	/**
-	 * @param contractType
+	 * @param contractType to be set
 	 */
 	public void setContractType(int contractType) {
 		this.contractType = contractType;
 	}
 	/**
-	 * @return
+	 * @return the requesting department
 	 */
 	public int getRequestingDepartment() {
 		return requestingDepartment;
 	}
-	/**
+	/** Sets the requesting department
 	 * @param requestingDepartment
 	 */
 	public void setRequestingDepartment(int requestingDepartment) {
 		this.requestingDepartment = requestingDepartment;
 	}
-	/**
-	 * @return
+	/** Get the title of the job
+	 * @return the title
 	 */
 	public String getJobTitle() {
 		return jobTitle;
 	}
-	/**
+	/** Sets job title
 	 * @param jobTitle
 	 */
 	public void setJobTitle(String jobTitle) {
 		this.jobTitle = jobTitle;
 	}
-	/**
-	 * @return
+	/** returns the job description
+	 * @return job description
 	 */
 	public String getJobDescription() {
 		return jobDescription;
 	}
-	/**
+	/** sets the job description
 	 * @param jobDescription
 	 */
 	public void setJobDescription(String jobDescription) {
 		this.jobDescription = jobDescription;
 	}
 
+	/**
+	 * @return a reference to the project
+	 */
 	public long getProjectReferenceId() {
 		return projectReferenceId;
 	}
 
+	/**Sets the project reference id
+	 * @param projectReferenceId
+	 */
 	public void setProjectReferenceId(long projectReferenceId) {
 		this.projectReferenceId = projectReferenceId;
 	}

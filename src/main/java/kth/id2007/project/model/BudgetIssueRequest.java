@@ -1,8 +1,9 @@
 package kth.id2007.project.model;
 
 /**
- * @author mg
- *
+ * Class for holding information about budget issue.
+ * 
+ * 
  */
 public class BudgetIssueRequest {
 	private int requestingDepartment;
@@ -25,49 +26,49 @@ public class BudgetIssueRequest {
 	}
 	
 	/**
-	 * @return
+	 * @return The requesting department
 	 */
 	public int getRequestingDepartment() {
 		return requestingDepartment;
 	}
 	/**
-	 * @param requestingDepartment
+	 * @param requestingDepartment 
 	 */
 	public void setRequestingDepartment(int requestingDepartment) {
 		this.requestingDepartment = requestingDepartment;
 	}
 	/**
-	 * @return
+	 * @return reference to the project
 	 */
 	public long getProjectReferenceId() {
 		return projectReferenceId;
 	}
 	/**
-	 * @param projectRefrenceId
+	 * @param projectRefrenceId to be set
 	 */
 	public void setProjectRefrenceId(long projectRefrenceId) {
 		this.projectReferenceId = projectRefrenceId;
 	}
 	/**
-	 * @return
+	 * @return the budget issue amount
 	 */
 	public int getAmount() {
 		return amount;
 	}
 	/**
-	 * @param amount
+	 * @param the budget issue amount
 	 */
 	public void setAmount(int amount) {
 		this.amount = amount;
 	}
 	/**
-	 * @return
+	 * @return reason of budget issue
 	 */
 	public String getReason() {
 		return reason;
 	}
 	/**
-	 * @param reason
+	 * @param reason of budget issue
 	 */
 	public void setReason(String reason) {
 		this.reason = reason;

@@ -5,7 +5,6 @@ import java.util.Date;
 /**
  * Class for holding information about a client
  * 
- * @author mg
  */
 public class ClientRecord {
 	private String clientName;
