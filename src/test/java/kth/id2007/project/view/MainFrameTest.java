@@ -41,7 +41,7 @@ public class MainFrameTest {
         mainFrame.cleanUp();
         //Customer service officer
         mainFrame = new FrameFixture(new MainFrame(new GUI(), new User(username, pw, Roles.CUSTOMER_SERVICE_OFFICER, Roles.NO_TEAM)));
-        mainFrame.tabbedPane("container_pane").requireTabTitles("Home");
+        mainFrame.tabbedPane("container_pane").requireTabTitles("Home","Event Applications");
         mainFrame.cleanUp();
         //Senior customer service officer
         mainFrame = new FrameFixture(new MainFrame(new GUI(), new User(username, pw, Roles.SENIOR_CUSTOMER_SERVICE_OFFICER, Roles.NO_TEAM)));
@@ -73,16 +73,11 @@ public class MainFrameTest {
     	
         String username = "testUsername";
         String pw  = "testPw";
-        System.out.println("asdf");
         FrameFixture mainFrame = new FrameFixture(new MainFrame(new GUI(), new User(username, pw, Roles.ADMINISTRATOR, Roles.NO_TEAM)));
-        System.out.println("visi");
         mainFrame.requireVisible();
-        System.out.println("???");
         mainFrame.tabbedPane("container_pane").requireVisible();
-        System.out.println("test 2");
         mainFrame.tabbedPane("container_pane").requireTabTitles("Home", "Event Applications", "Clients", "Employees", "HR Request", "Budget Issue", "Sub-team Tasks");
         mainFrame.tabbedPane("container_pane").selectTab("Home");
-        System.out.println("Testing");
         mainFrame.label("home_title").requireText("Home");
         mainFrame.label("user_label").requireText("User:");
         mainFrame.label("username").requireText(username);
