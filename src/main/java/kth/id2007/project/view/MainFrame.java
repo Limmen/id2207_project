@@ -38,11 +38,11 @@ public class MainFrame extends JFrame {
         this.gui = gui;
         this.user = user;
         setLayout(new MigLayout());
-        setTitle("SEP System");
+        setTitle("SEP System - "+user.getRole());
         container = new Container();
         container.setName("container_pane");
         setContentPane(container);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      //  setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         pack();
         setLocationRelativeTo(null); //center on screen
         setVisible(true);
@@ -223,7 +223,7 @@ public class MainFrame extends JFrame {
     private class EventApplicationsPanel extends JPanel {
         private ViewEventApplicationPanel viewEventApplicationPanel;
         private String[] accessList = new String[]{
-                Roles.SENIOR_CUSTOMER_SERVICE_OFFICER,
+                Roles.SENIOR_CUSTOMER_SERVICE_OFFICER,Roles.CUSTOMER_SERVICE_OFFICER,
                 Roles.FINANCIAL_MANAGER, Roles.ADMINISTRATION_MANAGER, Roles.PRODUCTION_MANAGER, Roles.SERVICE_MANAGER,
                 Roles.PHOTOGRAPHER_TEAM, Roles.AUDIO_TEAM, Roles.GRAPHIC_TEAM, Roles.IT_TEAM, Roles.DECORATING_TEAM,
                 Roles.COOKING_TEAM, Roles.RESTAURANT_SERVICES_TEAM, Roles.ADMINISTRATOR
@@ -248,7 +248,7 @@ public class MainFrame extends JFrame {
 
         private class CreateEventApplicationPanel extends JPanel {
             private String[] accessList = new String[]{
-                    Roles.SENIOR_CUSTOMER_SERVICE_OFFICER, Roles.ADMINISTRATOR
+                    Roles.SENIOR_CUSTOMER_SERVICE_OFFICER, Roles.ADMINISTRATOR,Roles.CUSTOMER_SERVICE_OFFICER
             };
 
             private CreateEventApplicationPanel() {
@@ -303,20 +303,24 @@ public class MainFrame extends JFrame {
         private class ViewEventApplicationPanel extends JPanel {
             private DefaultTableModel model = new DefaultTableModel();
             private String[] columnNames = new String[]{"projectRef", "budget", "discount", "eventType", "preferences",
-                    "description", "from", "to", "expected attendees", "status", "budget comments",
+                    "description", "from", "to", "expected attendees", "budget comments", "status",
                     "history"};
-
+        	String[] accessList = new String[]{
+                    Roles.ADMINISTRATION_MANAGER, Roles.PRODUCTION_MANAGER,Roles.FINANCIAL_MANAGER,
+                    Roles.SERVICE_MANAGER, Roles.ADMINISTRATOR
+            };
+            
             private ViewEventApplicationPanel() {
+                
+            
+                
                 setLayout(new MigLayout("wrap 1"));
                 add(new JLabel("Event Applications"), "span 1, center");
                 String rowData[][] = new String[0][0];
                 model = new DefaultTableModel(rowData, columnNames) {
                     @Override
                     public boolean isCellEditable(int row, int column) {
-                        String[] accessList = new String[]{
-                                Roles.ADMINISTRATION_MANAGER, Roles.PRODUCTION_MANAGER,
-                                Roles.SERVICE_MANAGER, Roles.ADMINISTRATOR
-                        };
+
                         return access();
                     }
                 };
@@ -615,13 +619,13 @@ public class MainFrame extends JFrame {
     //Employees-panel/tab
     private class ViewHrRequestPanel extends JPanel {
         private DefaultTableModel model;
-        String[] columnNames = new String[]{"Project-ref, Contract type", "Requesting Department", "Job Title", "Job Description"};
+        String[] columnNames = new String[]{"Project-ref","Contract type", "Requesting Department", "Job Title", "Job Description"};
         private String[] accessList = new String[]{
                 Roles.SENIOR_HR_MANAGER, Roles.HR_ASSISTANT, Roles.PRODUCTION_MANAGER, Roles.SERVICE_MANAGER,
                 Roles.ADMINISTRATOR
         };
         private String[] accessListCanResolve = new String[]{
-                Roles.SENIOR_HR_MANAGER, Roles.HR_ASSISTANT, Roles.PRODUCTION_MANAGER, Roles.SERVICE_MANAGER,
+                Roles.SENIOR_HR_MANAGER,
                 Roles.ADMINISTRATOR
         };
 
@@ -675,7 +679,7 @@ public class MainFrame extends JFrame {
             for (int i = 0; i < r.size(); i++) {
                 rowData[i][0] = Long.toString(r.get(i).getProjectReferenceId());
                 rowData[i][1] = HrRequest.JOB_TYPES[r.get(i).getContractType()];
-                rowData[i][2] = Roles.getDeparments()[r.get(i).getContractType()];
+                rowData[i][2] = Roles.getDeparments()[r.get(i).getRequestingDepartment()];
                 rowData[i][3] = r.get(i).getJobTitle();
                 rowData[i][4] = r.get(i).getJobDescription();
             }
@@ -702,12 +706,13 @@ public class MainFrame extends JFrame {
 
         public BudgetIssueRequestPanel() {
             setLayout(new MigLayout("wrap 1"));
-            add(new JLabel("Budget Issue Request"), "span 1, center");
 
             //Create         
             createBudgetIssuePanel = new CreateBudgetIssuePanel();
 
             if (createBudgetIssuePanel.access()) {
+                add(new JLabel("Create new Budget Issue Request"), "span 1, center");
+
                 add(createBudgetIssuePanel, "span 2");
             }
             //View
@@ -724,13 +729,13 @@ public class MainFrame extends JFrame {
 
         private class ViewBudgetIssuePanel extends JPanel {
             private DefaultTableModel model;
-            private String[] columnNames = new String[]{"Project-ref", "Contract type", "Requesting Department", "Job Title", "Job Description"};
+            private String[] columnNames = new String[]{"Project-ref","Requesting Department", "Amount", "Reason"};
             private String[] accessList = new String[]{
                     Roles.FINANCIAL_MANAGER, Roles.PRODUCTION_MANAGER,
                     Roles.SERVICE_MANAGER, Roles.ADMINISTRATOR
             };
             private String[] accessListCanResolve = new String[]{
-                    Roles.SENIOR_HR_MANAGER, Roles.HR_ASSISTANT, Roles.PRODUCTION_MANAGER, Roles.SERVICE_MANAGER,
+                    Roles.FINANCIAL_MANAGER,
                     Roles.ADMINISTRATOR
             };
 
@@ -785,9 +790,8 @@ public class MainFrame extends JFrame {
                 for (int i = 0; i < r.size(); i++) {
                     rowData[i][0] = Long.toString(r.get(i).getProjectReferenceId());
                     rowData[i][1] = Roles.getDeparments()[r.get(i).getRequestingDepartment()];
-                    rowData[i][2] = r.get(i).getProjectReferenceId() + "";
-                    rowData[i][3] = r.get(i).getAmount() + "";
-                    rowData[i][4] = r.get(i).getReason();
+                    rowData[i][2] = r.get(i).getAmount() + "";
+                    rowData[i][3] = r.get(i).getReason();
                 }
                 model.setDataVector(rowData, columnNames);
                 repaint();
