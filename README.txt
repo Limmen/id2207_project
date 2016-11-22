@@ -27,3 +27,7 @@ To run the program: java -jar target/sep_system-1.0-SNAPSHOT-jar-with-dependenci
 To generate new fat-jar: mvn clean compile assembly:single
 
 
+Authors:
+
+Kim Hammar <kimham@kth.se>
+Malte Gruber <malteg@kth.se>
